@@ -1,0 +1,171 @@
+fci_question,condition,criterion,applicable,result,evidence_or_notes
+5,Constrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met
+5,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Modifiable mass,Yes,Fail,"Not met - control absent/non-functional (parameter-control failure, paper Table 2 Q5)"
+5,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Modifiable initial height,Yes,Fail,"Not met - control absent/non-functional (parameter-control failure, paper Table 2 Q5)"
+5,Constrained,Modifiable initial velocity,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Modifiable initial velocity,Yes,Fail,"Not met - control absent/non-functional (parameter-control failure, paper Table 2 Q5)"
+5,Constrained,Modifiable launch angle (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+5,Unconstrained,Modifiable launch angle (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+5,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met
+5,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),No,Not applicable,Not applicable - criterion applies to setups that include air resistance only
+5,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),No,Not applicable,Not applicable - criterion applies to setups that include air resistance only
+5,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
+5,Constrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met
+5,Constrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met
+5,Constrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Fail,"Not met - playback speed options absent (scaffolding failure, paper Table 2 Q5)"
+5,Constrained,Time scrubbing,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Time scrubbing,Yes,Fail,"Not met - time scrubbing absent (scaffolding failure, paper Table 2 Q5)"
+5,Constrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met
+5,Constrained,Four or more key motion graphs,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Four or more key motion graphs,Yes,Fail,Not met - fewer than four motion graphs displayed (paper Table 2 Q5)
+5,Constrained,"Net acceleration is always ""-g""",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,"Net acceleration is always ""-g""",Yes,Pass,Met
+5,Constrained,Horizontal velocity constant (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+5,Unconstrained,Horizontal velocity constant (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+5,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+5,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Fail,Not met - graphs not qualitatively consistent with intended setup (paper Table 2 Q5)
+16,Constrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met
+16,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Modifiable mass,Yes,Pass,Met
+16,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Modifiable initial height,Yes,Pass,Met
+16,Constrained,Modifiable initial velocity,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Modifiable initial velocity,Yes,Pass,Met
+16,Constrained,Modifiable launch angle (projectile motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Modifiable launch angle (projectile motion only),Yes,Pass,Met
+16,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met
+16,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Fail,"Not met - air-drag force vector not viewable (representation failure, paper Table 2 Q16)"
+16,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
+16,Constrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met
+16,Constrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met
+16,Constrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met
+16,Constrained,Time scrubbing,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Time scrubbing,Yes,Pass,Met
+16,Constrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met
+16,Constrained,Four or more key motion graphs,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Four or more key motion graphs,Yes,Pass,Met
+16,Constrained,"Net acceleration is always ""-g""",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,"Net acceleration is always ""-g""",Yes,Pass,Met
+16,Constrained,Horizontal velocity constant (projectile motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Horizontal velocity constant (projectile motion only),Yes,Pass,Met
+16,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+16,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met
+17,Constrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Correct Setup (Projectile Motion or Free Fall),Yes,Fail,"Not met - rendered as projectile motion instead of free fall (scenario-translation failure, paper Table 2 Q17)"
+17,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Modifiable mass,Yes,Pass,Met
+17,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Modifiable initial height,Yes,Pass,Met
+17,Constrained,Modifiable initial velocity,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Modifiable initial velocity,Yes,Pass,Met
+17,Constrained,Modifiable launch angle (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+17,Unconstrained,Modifiable launch angle (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+17,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met
+17,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met
+17,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
+17,Constrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met
+17,Constrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met
+17,Constrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met
+17,Constrained,Time scrubbing,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Time scrubbing,Yes,Pass,Met
+17,Constrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met
+17,Constrained,Four or more key motion graphs,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Four or more key motion graphs,Yes,Pass,Met
+17,Constrained,"Net acceleration is always ""-g""",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,"Net acceleration is always ""-g""",Yes,Pass,Met
+17,Constrained,Horizontal velocity constant (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+17,Unconstrained,Horizontal velocity constant (projectile motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
+17,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+17,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met
+22,Constrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met
+22,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Modifiable mass,Yes,Pass,Met
+22,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Modifiable initial height,Yes,Pass,Met
+22,Constrained,Modifiable initial velocity,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Modifiable initial velocity,Yes,Pass,Met
+22,Constrained,Modifiable launch angle (projectile motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Modifiable launch angle (projectile motion only),Yes,Pass,Met
+22,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met
+22,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met
+22,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
+22,Constrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met
+22,Constrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met
+22,Constrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met
+22,Constrained,Time scrubbing,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Time scrubbing,Yes,Pass,Met
+22,Constrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met
+22,Constrained,Four or more key motion graphs,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Four or more key motion graphs,Yes,Pass,Met
+22,Constrained,"Net acceleration is always ""-g""",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,"Net acceleration is always ""-g""",Yes,Pass,Met
+22,Constrained,Horizontal velocity constant (projectile motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Horizontal velocity constant (projectile motion only),Yes,Pass,Met
+22,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+22,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met
+23,Constrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Correct Setup (Projectile Motion or Free Fall),Yes,Pass,Met
+23,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Modifiable mass,Yes,Pass,Met
+23,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Modifiable initial height,Yes,Pass,Met
+23,Constrained,Modifiable initial velocity,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Modifiable initial velocity,Yes,Pass,Met
+23,Constrained,Modifiable launch angle (projectile motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Modifiable launch angle (projectile motion only),Yes,Pass,Met
+23,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Fail,"Not met - gravity force vector not viewable (representation failure, paper Table 2 Q23)"
+23,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Fail,"Not met - air-drag force vector not viewable (representation failure, paper Table 2 Q23)"
+23,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
+23,Constrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Enable/disable view of gravity acceleration vector,Yes,Pass,Met
+23,Constrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met
+23,Constrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met
+23,Constrained,Time scrubbing,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Time scrubbing,Yes,Pass,Met
+23,Constrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met
+23,Constrained,Four or more key motion graphs,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Four or more key motion graphs,Yes,Pass,Met
+23,Constrained,"Net acceleration is always ""-g""",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,"Net acceleration is always ""-g""",Yes,Pass,Met
+23,Constrained,Horizontal velocity constant (projectile motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Horizontal velocity constant (projectile motion only),Yes,Pass,Met
+23,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table 2)
+23,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met

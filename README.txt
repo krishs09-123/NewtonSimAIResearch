@@ -23,11 +23,11 @@ rubric (feature availability + apparent physics-consistency).
     screenshot; the framework renders the simulation. Source is in
     NewtonSimAI_source/. Scored 100% on all five questions.
 
-  * UNCONSTRAINED condition = Claude Opus 4.6. For each question the model was
-    given a prompt (stating the feature + physics requirements) plus the FCI
-    question/screenshot, and generated the simulation code fresh, with no
-    framework. (GPT-4o-mini still extracted the problem details.) These
-    generations are in unconstrained_simulations/. Scored 50%-100%.
+  * UNCONSTRAINED condition = Claude Opus 4.6. Claude Opus 4.6 received the FCI
+    question image and the generation prompt (stating the feature + physics
+    requirements) and handled both question-detail interpretation and
+    simulation-code generation, with no framework. These generations are in
+    unconstrained_simulations/. Scored 50%-100%.
 
 Five FCI problems were used: Q5 (free fall), Q16 (projectile), Q17 (free fall),
 Q22 (projectile), Q23 (projectile). One generation was produced per question per
@@ -57,7 +57,9 @@ NewtonSimAI_Supplementary_Materials/
 |                                     (also provides the physics backend used to
 |                                      run the unconstrained sims -- see Section 4)
 |
-+-- scoring_data.csv               <- the rubric scores reported in the paper
++-- scoring_data.csv               <- per-simulation summary scores (paper Table 2)
+|
++-- criterion_level_scoring.csv    <- full criterion-by-criterion matrix (170 rows)
 
 
 --------------------------------------------------------------------------------
@@ -165,7 +167,35 @@ Two rows per FCI item, one per condition. Columns:
   failed_criteria       Semicolon-separated names of the failed criteria; empty
                         when nothing failed.
 
-All constrained generations scored 100%. 
+All constrained generations scored 100%.
+
+
+--------------------------------------------------------------------------------
+6b. criterion_level_scoring.csv  (full criterion-by-criterion matrix)
+--------------------------------------------------------------------------------
+
+For criterion-level verification, criterion_level_scoring.csv expands the
+summary into one row per simulation-criterion combination: 10 simulations
+(5 questions x 2 conditions) x 17 rubric criteria = 170 rows. Columns:
+
+  fci_question       FCI item number (5, 16, 17, 22, 23).
+  condition          "Constrained" or "Unconstrained".
+  criterion          The rubric criterion, verbatim from the paper's Figure 1
+                     (Technical Evaluation Rubric).
+  applicable         "Yes" / "No" -- whether this criterion applies to the
+                     problem's setup.
+  result             "Pass", "Fail", or "Not applicable".
+  evidence_or_notes  Why a criterion is N/A, or the observed reason it failed.
+
+The 17 criteria and their applicability rules are taken from the paper's
+Figure 1. Three criteria are conditional: "modifiable launch angle" and
+"horizontal velocity constant" apply to projectile-motion setups only, and the
+"force_air_drag vector" view applies to air-resistance setups only -- which is
+why the applicable-criteria total ranges from 14 to 17. Every Pass/Fail/N/A
+entry is derived from, and reconciles exactly with, the recorded per-criterion
+outcomes in scoring_data.csv (paper Table 2); it reproduces the same
+met/applicable/failed counts for all ten simulations. This file is an expansion
+of the study's recorded scoring, not a re-scoring.
 
 
 --------------------------------------------------------------------------------
