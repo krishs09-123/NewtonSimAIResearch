@@ -110,6 +110,42 @@ re-scoring.
 
 ---
 
+## Reproducing the results
+
+The scoring is a manual application of the 17-criterion rubric to each running
+simulation, so "reproducing" means running the artifact and re-checking each
+criterion (use `criterion_level_scoring.csv` as the expected answer key). What
+is and isn't deterministic:
+
+- **Unconstrained condition — fully deterministic.** The five
+  `unconstrained_simulations/Q##/` folders are the *fixed generated code* that
+  was scored (static HTML/JS). Running them reproduces the exact same behavior;
+  the trajectory maths come from the included physics backend, which is
+  deterministic. A reviewer re-checking the rubric against these should land on
+  the same per-criterion results.
+- **Constrained condition — two paths.** (a) *Deterministic:* the exact
+  generated outputs are archived in `constrained_simulations_raw/` (static code)
+  — run those to reproduce behavior directly. (b) *Live tool:* running
+  `NewtonSimAI_source/` re-generates from scratch and calls GPT-4o-mini for the
+  extraction step, which needs an OpenAI API key (costs money) and is **not
+  byte-for-byte deterministic** — a fresh run can differ in the extracted
+  numbers. The rubric criteria it was scored on are framework-guaranteed
+  features, so a live run still meets them (the study recorded 100%), but for an
+  *exact* artifact match use the archived outputs.
+
+Two things a reviewer should know before testing:
+
+1. **The unconstrained apps open with generic default inputs** (e.g. mass 1,
+   height 50, speed 30, angle 45), not each question's scenario — the scoring is
+   **feature-based** (is *modifiable mass* present and functional, do the motion
+   graphs populate, etc.), not a check of specific numbers. Each folder includes
+   its FCI question image (`No.<n>.webp`) so the intended scenario is on hand.
+2. **The physics backend must be running** (`127.0.0.1:8000`) for *either*
+   condition's simulations to compute, and an internet connection is needed for
+   the Chart.js plotting library (loaded from its CDN). See below.
+
+---
+
 ## Running an unconstrained simulation
 
 Each simulation page fetches its trajectory/force time series from a small
