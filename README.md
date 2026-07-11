@@ -60,7 +60,9 @@ NewtonSimAI_Research/
 ```
 
 Each `unconstrained_simulations/Q##/` folder holds one generated simulation
-plus the FCI question image (`No.<n>.webp`) that was used as its input.
+plus the FCI question image (`No.<n>.webp`) that was used as its input. Each
+question image is the corresponding **FCI figure in the manuscript**: Q05 =
+Figure 1, Q16 = Figure 2, Q17 = Figure 3, Q22 = Figure 4, Q23 = Figure 5.
 
 ---
 
@@ -68,13 +70,13 @@ plus the FCI question image (`No.<n>.webp`) that was used as its input.
 
 From the paper's Table III (Raw Data). Every **constrained** generation scored 100%.
 
-| Question | Scenario | Score | Failed criteria |
-|----------|----------|-------|-----------------|
-| **Q05** | Steel ball thrown straight up (free fall) | **50.00%** *(outlier)* | modifiable mass/height/velocity, speed options, time scrubbing, motion graphs (none displayed), physics-consistency |
-| **Q16** | Cannonball fired off a cliff (projectile) | **94.12%** | enable/disable view of the air-drag force vector |
-| **Q17** | Stone dropped from a one-story roof (free fall) | **93.33%** | correct setup (rendered as projectile, not free fall) |
-| **Q22** | Golf ball driven down a fairway (projectile) | **100.00%** | none |
-| **Q23** | Bowling ball out of a flying airliner (projectile) | **88.24%** | enable/disable view of the gravity and air-drag force vectors |
+| Question | Manuscript figure | Scenario | Score | Failed criteria |
+|----------|-------------------|----------|-------|-----------------|
+| **Q05** | Figure 1 | Steel ball thrown straight up (free fall) | **50.00%** *(outlier)* | modifiable mass/height/velocity, speed options, time scrubbing, motion graphs (none displayed), physics-consistency |
+| **Q16** | Figure 2 | Cannonball fired off a cliff (projectile) | **94.12%** | enable/disable view of the air-drag force vector |
+| **Q17** | Figure 3 | Stone dropped from a one-story roof (free fall) | **93.33%** | correct setup (rendered as projectile, not free fall) |
+| **Q22** | Figure 4 | Golf ball driven down a fairway (projectile) | **100.00%** | none |
+| **Q23** | Figure 5 | Bowling ball out of a flying airliner (projectile) | **88.24%** | enable/disable view of the gravity and air-drag force vectors |
 
 `scoring_data.csv` has two rows per FCI item (one per condition). Columns:
 `fci_question`, `condition`, `criteria_met`, `applicable_criteria` (14–17, since

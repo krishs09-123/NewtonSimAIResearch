@@ -77,21 +77,24 @@ item, together with the FCI question image that was used as the input:
                           graphs, and calls to the physics backend).
   styles_projectile.css   The generated styling.
   No.<n>.webp             The FCI question screenshot given to the model for this
-                          item (to re-test / reproduce).
+                          item (to re-test / reproduce). This image is the
+                          corresponding FCI figure in the manuscript (see the
+                          mapping below).
 
 Folder-to-question mapping and each item's scored outcome (from the paper,
-Table III):
+Table III). Each question image is the manuscript's FCI figure: Q05 = Figure 1,
+Q16 = Figure 2, Q17 = Figure 3, Q22 = Figure 4, Q23 = Figure 5.
 
-  Q05  = FCI Q5  (steel ball thrown straight up; free fall)      50.00%  [outlier]
+  Q05  = FCI Q5  (steel ball thrown straight up; free fall)  [Figure 1]  50.00%  [outlier]
          Failed: modifiable mass/height/velocity, speed options, time scrubbing,
          motion graphs (none displayed), physics-consistency.
-  Q16  = FCI Q16 (cannonball fired off a cliff; projectile)      94.12%
+  Q16  = FCI Q16 (cannonball fired off a cliff; projectile)  [Figure 2]  94.12%
          Failed: enable/disable view of the air-drag force vector.
-  Q17  = FCI Q17 (stone dropped from a one-story roof; free fall) 93.33%
+  Q17  = FCI Q17 (stone dropped from a one-story roof; free fall)  [Figure 3]  93.33%
          Failed: correct setup selection (was rendered as projectile, not free fall).
-  Q22  = FCI Q22 (golf ball driven down a fairway; projectile)   100.00%
+  Q22  = FCI Q22 (golf ball driven down a fairway; projectile)  [Figure 4]  100.00%
          No failures.
-  Q23  = FCI Q23 (bowling ball out of a flying airliner; projectile) 88.24%
+  Q23  = FCI Q23 (bowling ball out of a flying airliner; projectile)  [Figure 5]  88.24%
          Failed: enable/disable view of the gravity and air-drag force vectors.
 
 

@@ -51,11 +51,11 @@ scored artifact, and confidence is stated per row.
 
 | Question | Flagged run | Signature (h/s/a/mass/air) | Why | Confidence |
 |----------|-------------|-----------------------------|-----|------------|
-| **Q05** — steel ball thrown straight up (free fall) | `sim_0c0e9c474f15f331` | h0 · s50 · a90 · 0.45 kg · air off | Thrown straight up (angle 90, speed > 0), no air = free-fall signature | moderate-high |
-| **Q16** — cannonball off a cliff (projectile) | `sim_bbec400394fed270` | h100 · s50 · a0 · 10 kg · air on | Heavy ball launched horizontally from a height with air = cliff cannonball | moderate-high |
-| **Q17** — stone dropped from a roof (free fall) | `sim_17498930ee4d5a64` | h100 · s0 · a90 · 0.5 kg · air off | Dropped (speed 0) vertically from a height = free-fall drop | moderate |
-| **Q22** — golf ball down a fairway (projectile) | `sim_427b10f7a77689a2` | h0 · s50 · a0 · 0.45 kg · air on | Light ball from ground level with air = golf-on-fairway | moderate |
-| **Q23** — bowling ball from a flying airliner (projectile) | `sim_00f5c9d1ef6b41d3` | h100 · s100 · a0 · 6.8 kg · air off | 6.8 kg = regulation bowling-ball mass, launched horizontally at high speed from height = airliner drop; the strongest single mass signal in the set | moderate |
+| **Q05** — steel ball thrown straight up (free fall; manuscript Figure 1) | `sim_0c0e9c474f15f331` | h0 · s50 · a90 · 0.45 kg · air off | Thrown straight up (angle 90, speed > 0), no air = free-fall signature | moderate-high |
+| **Q16** — cannonball off a cliff (projectile; manuscript Figure 2) | `sim_bbec400394fed270` | h100 · s50 · a0 · 10 kg · air on | Heavy ball launched horizontally from a height with air = cliff cannonball | moderate-high |
+| **Q17** — stone dropped from a roof (free fall; manuscript Figure 3) | `sim_17498930ee4d5a64` | h100 · s0 · a90 · 0.5 kg · air off | Dropped (speed 0) vertically from a height = free-fall drop | moderate |
+| **Q22** — golf ball down a fairway (projectile; manuscript Figure 4) | `sim_427b10f7a77689a2` | h0 · s50 · a0 · 0.45 kg · air on | Light ball from ground level with air = golf-on-fairway | moderate |
+| **Q23** — bowling ball from a flying airliner (projectile; manuscript Figure 5) | `sim_00f5c9d1ef6b41d3` | h100 · s100 · a0 · 6.8 kg · air off | 6.8 kg = regulation bowling-ball mass, launched horizontally at high speed from height = airliner drop; the strongest single mass signal in the set | moderate |
 
 All constrained simulations scored **100%** on their applicable criteria (paper
 Table III), so the flagged run and its near-duplicates are behaviorally
