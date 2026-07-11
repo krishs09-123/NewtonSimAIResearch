@@ -1,11 +1,11 @@
 fci_question,condition,criteria_met,applicable_criteria,accuracy_percent,failed_criteria_count,failed_criteria
 5,Constrained,14,14,100.00,0,
-5,Unconstrained,7,14,50.00,7,Modifiable mass; Modifiable initial height; Modifiable initial velocity; Speed options; Time scrubbing; Four or more key motion graphs; Graphs consistent with expected qualitative physics relationships for the intended setup
+5,Unconstrained,7,14,50.00,7,Modifiable mass; Modifiable initial height; Modifiable initial velocity; Speed options; Time scrubbing; Four or more key motion graphs; Graphs consistent with expected qualitative physics relationships
 16,Constrained,17,17,100.00,0,
-16,Unconstrained,16,17,94.12,1,Enable/disable view of force_air_drag vector (& components)
+16,Unconstrained,16,17,94.12,1,Enable/disable view of force_air_drag vector and components — air-resistance setups only
 17,Constrained,15,15,100.00,0,
 17,Unconstrained,14,15,93.33,1,Correct setup (projectile-motion or free-fall)
 22,Constrained,17,17,100.00,0,
 22,Unconstrained,17,17,100.00,0,
 23,Constrained,17,17,100.00,0,
-23,Unconstrained,15,17,88.24,2,Enable/disable view of force_gravity vector (& components); Enable/disable view of force_air_drag vector (& components)
+23,Unconstrained,15,17,88.24,2,Enable/disable view of force_gravity vector and components; Enable/disable view of force_air_drag vector and components — air-resistance setups only

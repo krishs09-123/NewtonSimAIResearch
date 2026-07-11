@@ -19,15 +19,17 @@ projectile-motion simulation, and audits each against a 17-criterion technical
 and physical-accuracy rubric (feature availability + apparent
 physics-consistency).
 
-  * CONSTRAINED condition  = NewtonSimAI. A fixed, hard-coded free-fall /
-    projectile framework. GPT-4o-mini extracts the problem details from the FCI
-    screenshot; the framework renders the simulation. Source is in
+  * CONSTRAINED condition  = NewtonSimAI. GPT-4o-mini extracted structured
+    question details, which were normalized and inserted into NewtonSimAI's
+    fixed, hard-coded free-fall / projectile simulation framework. Source is in
     NewtonSimAI_source/. Scored 100% on all five questions.
 
   * UNCONSTRAINED condition = Claude Opus 4.6. Claude Opus 4.6 received the FCI
-    question image and the generation prompt (stating the feature + physics
-    requirements) and handled both question-detail interpretation and
-    simulation-code generation, with no framework. These generations are in
+    question image and generation instructions and handled BOTH question
+    interpretation and simulation-code generation within the unconstrained
+    workflow, with no framework. GPT-4o-mini was NOT used in the unconstrained
+    condition. (Per the manuscript, Claude Opus 4.6 was used through its
+    web-based interface for this condition.) These generations are in
     unconstrained_simulations/. Scored 50%-100%.
 
 Five FCI problems were used: Q5 (free fall), Q16 (projectile), Q17 (free fall),
@@ -61,9 +63,18 @@ NewtonSimAI_Supplementary_Materials/
 +-- constrained_simulations_raw/   <- the constrained tool's original generated
 |                                     outputs (36 historical runs) + PROVENANCE.md
 |
-+-- scoring_data.csv               <- per-simulation summary scores (paper Table III)
++-- prompts/                       <- constrained extraction system prompt (verbatim)
+|                                     + prompt provenance (prompts/README.md)
++-- data/                          <- derived criterion-level scoring + data dictionary
+|   +-- criterion_level_scoring.csv   (170 rows; reconstructed -- see provenance)
+|   +-- DATA_DICTIONARY.md
++-- scripts/                       <- build + validation scripts for the derived data
 |
-+-- criterion_level_scoring.csv    <- full criterion-by-criterion matrix (170 rows)
++-- scoring_data.csv               <- reported summary scores (manuscript Table III)
+
+(Release/archive metadata -- licensing, citation, provenance, reproducibility,
+third-party notices, manifest -- lives in dedicated files at the repository
+root; see README.md.)
 
 
 --------------------------------------------------------------------------------
@@ -203,31 +214,36 @@ All constrained generations scored 100%.
 
 
 --------------------------------------------------------------------------------
-6b. criterion_level_scoring.csv  (full criterion-by-criterion matrix)
+6b. data/criterion_level_scoring.csv  (DERIVED criterion-by-criterion matrix)
 --------------------------------------------------------------------------------
 
-For criterion-level verification, criterion_level_scoring.csv expands the
+For criterion-level inspection, data/criterion_level_scoring.csv expands the
 summary into one row per simulation-criterion combination: 10 simulations
 (5 questions x 2 conditions) x 17 rubric criteria = 170 rows. Columns:
 
   fci_question       FCI item number (5, 16, 17, 22, 23).
   condition          "Constrained" or "Unconstrained".
-  criterion          The rubric criterion, verbatim from the paper's Table II
-                     (Technical and Physical Accuracy Evaluation Rubric).
-  applicable         "Yes" / "No" -- whether this criterion applies to the
-                     problem's setup.
+  criterion_number   Rubric criterion index, 1-17.
+  criterion          The rubric criterion text (manuscript Table II wording).
+  applicable         "true" / "false" -- whether this criterion applies to the
+                     item's setup.
   result             "Pass", "Fail", or "Not applicable".
-  evidence_or_notes  Why a criterion is N/A, or the observed reason it failed.
+  provenance         Always "Reconstructed from scoring_data.csv and the
+                     published rubric".
+  notes              Why a criterion is N/A, or the basis of the pass/fail.
 
-The 17 criteria and their applicability rules are taken from the paper's
-Table II. Three criteria are conditional: "modifiable launch angle" and
-"horizontal velocity constant" apply to projectile-motion setups only, and the
-"force_air_drag vector" view applies to air-resistance setups only -- which is
-why the applicable-criteria total ranges from 14 to 17. Every Pass/Fail/N/A
-entry is derived from, and reconciles exactly with, the recorded per-criterion
-outcomes in scoring_data.csv (paper Table III); it reproduces the same
-met/applicable/failed counts for all ten simulations. This file is an expansion
-of the study's recorded scoring, not a re-scoring.
+IMPORTANT: this file is a DERIVED artifact, not a contemporaneous raw scoring
+sheet. It is deterministically reconstructed from the reported summary
+(scoring_data.csv) and the published rubric (manuscript Table II) plus the
+reported per-item failed-criterion lists (Table III). Three criteria are
+conditional -- "modifiable launch angle" and "horizontal velocity constant"
+apply to projectile-motion setups only, and the "force_air_drag vector" view
+applies to air-resistance setups only -- so the applicable-criteria total ranges
+from 14 to 17. Regenerate with scripts/build_criterion_level_scoring.py and
+verify with scripts/validate_research_data.py, which exits nonzero unless the
+derived file reproduces the reported met/applicable/accuracy/failed values for
+all ten item/condition rows exactly. See data/DATA_DICTIONARY.md for full
+definitions.
 
 
 --------------------------------------------------------------------------------

@@ -23,6 +23,17 @@ apparent physics-consistency).
 | **Constrained** | **NewtonSimAI** — a fixed, hard-coded free-fall / projectile framework | GPT-4o-mini extracts the problem details from the FCI screenshot; the framework renders the simulation | **100% on all five questions** |
 | **Unconstrained** | **Claude Opus 4.6** — no framework | Claude Opus 4.6 received the FCI question image and the generation prompt (feature + physics requirements) and handled **both** question-detail interpretation and simulation-code generation | **50%–100%** |
 
+**Condition detail (methodology).**
+
+- *Constrained condition:* GPT-4o-mini extracted structured question details,
+  which were normalized and inserted into NewtonSimAI's fixed simulation
+  framework.
+- *Unconstrained condition:* Claude Opus 4.6 received the FCI question image and
+  generation instructions and handled **both** question interpretation and
+  simulation-code generation within the unconstrained workflow. **GPT-4o-mini was
+  not used in the unconstrained condition.** (Per the manuscript, Claude Opus 4.6
+  was used through its web-based interface for this condition.)
+
 Five FCI problems were used — Q5 (free fall), Q16 (projectile), Q17 (free fall),
 Q22 (projectile), Q23 (projectile) — with one generation per question per
 condition.
@@ -55,9 +66,19 @@ NewtonSimAI_Research/
 ├── constrained_simulations_raw/  ← the constrained tool's original generated
 │                                    outputs (36 historical runs) + provenance
 │
-├── scoring_data.csv              ← per-simulation summary scores (paper Table III)
-└── criterion_level_scoring.csv   ← full criterion-by-criterion matrix (170 rows)
+├── prompts/                      ← constrained extraction system prompt (verbatim)
+│                                    + prompt provenance notes
+├── data/                         ← derived criterion-level scoring + data dictionary
+│   ├── criterion_level_scoring.csv  (170 rows; reconstructed — see provenance)
+│   └── DATA_DICTIONARY.md
+├── scripts/                      ← build + validation scripts for the derived data
+│
+└── scoring_data.csv              ← reported summary scores (manuscript Table III)
 ```
+
+Licensing, citation, provenance, reproducibility, third-party notices, and a
+file manifest are provided in dedicated files at the repository root (added to
+prepare this repository as an archived research artifact).
 
 Each `unconstrained_simulations/Q##/` folder holds one generated simulation
 plus the FCI question image (`No.<n>.webp`) that was used as its input. Each
@@ -84,32 +105,33 @@ some criteria apply only to projectile or air-resistance setups),
 `accuracy_percent`, `failed_criteria_count`, and `failed_criteria`
 (semicolon-separated; empty when nothing failed).
 
-### Criterion-level matrix — `criterion_level_scoring.csv`
+### Criterion-level matrix — `data/criterion_level_scoring.csv`
 
-For criterion-by-criterion verification, `criterion_level_scoring.csv` expands
-the summary into **one row per simulation × criterion** (10 simulations × 17
-rubric criteria = **170 rows**). Columns:
+For criterion-by-criterion inspection, `data/criterion_level_scoring.csv`
+expands the summary into **one row per simulation × criterion** (10 simulations
+× 17 rubric criteria = **170 rows**). Columns:
 
 | Column | Meaning |
 |--------|---------|
 | `fci_question` | FCI item number (5, 16, 17, 22, 23) |
 | `condition` | `Constrained` or `Unconstrained` |
-| `criterion` | The rubric criterion (one of the 17, verbatim from the paper's Table II) |
-| `applicable` | `Yes` / `No` — whether this criterion applies to this problem's setup |
+| `criterion_number` | Rubric criterion index, 1–17 |
+| `criterion` | The rubric criterion text (manuscript Table II wording) |
+| `applicable` | `true` / `false` — whether this criterion applies to this item's setup |
 | `result` | `Pass`, `Fail`, or `Not applicable` |
-| `evidence_or_notes` | Short note: why a criterion is N/A, or the observed reason a criterion failed |
+| `provenance` | Always `Reconstructed from scoring_data.csv and the published rubric` |
+| `notes` | Why a criterion is N/A, or the basis of the pass/fail |
 
-The 17 criteria and their applicability rules come from the paper's **Table II
-(Technical and Physical Accuracy Evaluation Rubric)**. Three criteria are
-conditional: *modifiable launch angle* and *horizontal velocity constant* apply
-to projectile-motion setups only, and the *force_air_drag vector* view applies
-to air-resistance setups only — which is why the applicable-criteria total
-ranges from 14 to 17. Every Pass/Fail/N/A entry is derived from, and reconciles
-exactly with, the recorded per-criterion outcomes in `scoring_data.csv` (paper
-Table III): the
-matrix reproduces the same met/applicable/failed counts for all ten
-simulations. It is an expansion of the study's recorded scoring, not a
-re-scoring.
+> **This file is a DERIVED artifact, not a contemporaneous raw scoring sheet.**
+> It is deterministically reconstructed from the reported summary
+> (`scoring_data.csv`) and the published rubric (manuscript Table II) plus the
+> reported per-item failed-criterion lists (Table III). Regenerate it with
+> `scripts/build_criterion_level_scoring.py` and verify it with
+> `scripts/validate_research_data.py`, which exits nonzero unless the derived
+> file reproduces the reported `met / applicable / accuracy / failed` values for
+> all ten item/condition rows exactly. See `data/DATA_DICTIONARY.md` for full
+> column definitions and the applicability rules (three criteria are
+> conditional, so the applicable-criteria total ranges from 14 to 17).
 
 ---
 
@@ -117,7 +139,7 @@ re-scoring.
 
 The scoring is a manual application of the 17-criterion rubric to each running
 simulation, so "reproducing" means running the artifact and re-checking each
-criterion (use `criterion_level_scoring.csv` as the expected answer key). What
+criterion (use `data/criterion_level_scoring.csv` as the expected answer key). What
 is and isn't deterministic:
 
 - **Unconstrained condition — fully deterministic.** The five
