@@ -61,3 +61,23 @@ All constrained simulations scored **100%** on their applicable criteria (paper
 Table 2), so the flagged run and its near-duplicates are behaviorally
 equivalent for scoring purposes — the uncertainty is only about *which physical
 folder* was the scored one, not about the outcome.
+
+## Verification of the flagged runs
+
+Each of the five flagged runs was loaded against the physics backend and its
+rendered behavior checked against its assigned scenario. All five rendered
+consistently with the flagging:
+
+| Question | Flagged run | Rendered initial conditions | Observed motion | Match |
+|----------|-------------|-----------------------------|-----------------|-------|
+| Q05 | `sim_0c0e9c474f15f331` | mass 0.45, height 0, velocity 50, angle **90°**, air off | Ball launched **straight up**, apex directly overhead, vertical return | consistent |
+| Q16 | `sim_bbec400394fed270` | mass 10, height 100, velocity 50, angle 0°, air **on** | Projectile launched horizontally from height; **air-drag vector visible** | consistent |
+| Q17 | `sim_17498930ee4d5a64` | mass 0.5, height 100, **velocity 0**, angle 90°, air off | **Pure vertical drop** (start/end vertically aligned, no horizontal travel) | consistent |
+| Q22 | `sim_427b10f7a77689a2` | mass 0.45, height 0, velocity 50, angle 0°, air **on** | Light ball at ground level with air enabled (flat angle-0 launch) | consistent |
+| Q23 | `sim_00f5c9d1ef6b41d3` | mass **6.8**, height 100, velocity 100, angle 0°, air off | Projectile **arc from height** with forward horizontal velocity | consistent |
+
+This confirms the parameter extraction and scenario assignment are correct — it
+does **not** upgrade any run to "certified scored artifact," since the run's
+near-duplicates would render identically. The velocity-0 drop (Q17) versus the
+velocity-50 upward throw (Q05) is a clean qualitative separator between the two
+free-fall items.
