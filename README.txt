@@ -50,15 +50,12 @@ NewtonSimAI_Supplementary_Materials/
 +-- README.txt                     <- this file
 |
 +-- unconstrained_simulations/     <- Claude Opus 4.6 generations, one per question
-|   +-- Q05/   (index.html, projectile.js, styles_projectile.css, No.5.webp)
-|   +-- Q16/   (... No.16.webp)
-|   +-- Q17/   (... No.17.webp)
-|   +-- Q22/   (... No.22.webp)
-|   +-- Q23/   (... No.23.webp)
+|   +-- Q05/  (index.html, styles_projectile.css, projectile.js, main_projectile.py)
+|   +-- Q16/  Q17/  Q22/  Q23/  (same 4 generated files each)
+|   +-- FCI_INPUTS_NOTICE.md    (FCI question inputs are third-party; not redistributed)
 |
 +-- NewtonSimAI_source/            <- the constrained tool's source code
-|                                     (also provides the physics backend used to
-|                                      run the unconstrained sims -- see Section 4)
+|                                     (the constrained condition's implementation)
 |
 +-- constrained_simulations_raw/   <- the constrained tool's original generated
 |                                     outputs (36 historical runs) + PROVENANCE.md
@@ -81,21 +78,24 @@ root; see README.md.)
 3. unconstrained_simulations/  (the artifacts + how they map to questions)
 --------------------------------------------------------------------------------
 
-Each Q## folder is the unconstrained (Claude Opus 4.6) generation for that FCI
-item, together with the FCI question image that was used as the input:
+Each Q## folder is one complete unconstrained (Claude Opus 4.6) generation --
+the FOUR generated files that make it self-contained:
 
   index.html              The generated simulation page (open this to run it).
-  projectile.js           The generated simulation logic (rendering, controls,
-                          graphs, and calls to the physics backend).
   styles_projectile.css   The generated styling.
-  No.<n>.webp             The FCI question screenshot given to the model for this
-                          item (to re-test / reproduce). This image is the
-                          corresponding FCI figure in the manuscript (see the
-                          mapping below).
+  projectile.js           The generated simulation logic (rendering, controls,
+                          graphs, and calls to this generation's own backend).
+  main_projectile.py      The generation's OWN FastAPI physics backend (each
+                          question's is distinct). Run this one -- NOT the
+                          constrained tool's backend -- when viewing the sim.
+
+The FCI question images that were the model inputs are NOT redistributed (they
+are third-party material; see FCI_INPUTS_NOTICE.md and THIRD_PARTY_NOTICES.md).
 
 Folder-to-question mapping and each item's scored outcome (from the paper,
-Table III). Each question image is the manuscript's FCI figure: Q05 = Figure 1,
-Q16 = Figure 2, Q17 = Figure 3, Q22 = Figure 4, Q23 = Figure 5.
+Table III). Each folder corresponds to an FCI item / manuscript figure:
+Q05 = FCI Q5 = Figure 1, Q16 = FCI Q16 = Figure 2, Q17 = FCI Q17 = Figure 3,
+Q22 = FCI Q22 = Figure 4, Q23 = FCI Q23 = Figure 5.
 
   Q05  = FCI Q5  (steel ball thrown straight up; free fall)  [Figure 1]  50.00%  [outlier]
          Failed: modifiable mass/height/velocity, speed options, time scrubbing,
@@ -115,10 +115,9 @@ Q16 = Figure 2, Q17 = Figure 3, Q22 = Figure 4, Q23 = Figure 5.
 --------------------------------------------------------------------------------
 
 The simulations are interactive: each page fetches its trajectory/force time
-series from a small physics backend (FastAPI, "main_projectile.py", included in
-NewtonSimAI_source). They call it at http://127.0.0.1:8000. Opening index.html
-without the backend running will render the page, but the motion will not
-compute.
+series from THAT generation's OWN FastAPI backend (main_projectile.py, in the
+same Q## folder), at http://127.0.0.1:8000. Opening index.html without its
+backend running will render the page, but the motion will not compute.
 
 To view a simulation:
 
@@ -126,27 +125,25 @@ To view a simulation:
          pip install fastapi uvicorn
      (On Windows you may need:  py -m pip install fastapi uvicorn)
 
-  2. Start the physics backend from the source template folder:
-         cd NewtonSimAI_source/templates/Projectile_motion
+  2. Start that generation's OWN backend from its folder (one at a time; each
+     backend listens on port 8000):
+         cd unconstrained_simulations/Q05     (or Q16 / Q17 / Q22 / Q23)
          uvicorn main_projectile:app --host 127.0.0.1 --port 8000
      (On Windows:  py -m uvicorn main_projectile:app --host 127.0.0.1 --port 8000)
 
-  3. Open the desired unconstrained_simulations/Q##/index.html in a web browser.
-     The backend allows cross-origin requests, so the page will fetch its data
-     and animate. (Keep an internet connection so the Chart.js plotting library
-     can load from its CDN.)
-
-The five FCI question images (No.<n>.webp) are included alongside each simulation
-so the input that produced it is on hand.
+  3. Open that same folder's index.html in a web browser. The backend allows
+     cross-origin requests, so the page will fetch its data and animate. (Keep
+     an internet connection so the Chart.js plotting library can load from its
+     CDN.)
 
 
 --------------------------------------------------------------------------------
 5. NewtonSimAI_source/  (the constrained tool)
 --------------------------------------------------------------------------------
 
-This is the source code of NewtonSimAI, the constrained-condition tool. It also
-supplies the physics backend that the unconstrained simulations call (Section 4).
-Layout:
+This is the source code of NewtonSimAI, the constrained-condition tool. (The
+unconstrained simulations do NOT depend on it -- each unconstrained generation
+ships its own main_projectile.py backend; see Section 3.) Layout:
 
   server.js                     Main Node/Express server (the entry point).
   public/                       Front-end upload page (index.html, app.css).

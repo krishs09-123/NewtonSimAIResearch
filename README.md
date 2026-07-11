@@ -53,15 +53,12 @@ NewtonSimAI_Research/
 ├── README.txt                    ← detailed reviewer notes (run steps, column defs)
 │
 ├── unconstrained_simulations/    ← Claude Opus 4.6 generations, one per question
-│   ├── Q05/   (index.html, projectile.js, styles_projectile.css, No.5.webp)
-│   ├── Q16/   (... No.16.webp)
-│   ├── Q17/   (... No.17.webp)
-│   ├── Q22/   (... No.22.webp)
-│   └── Q23/   (... No.23.webp)
+│   ├── Q05/  (index.html, styles_projectile.css, projectile.js, main_projectile.py)
+│   ├── Q16/  Q17/  Q22/  Q23/   (same 4 generated files each)
+│   └── FCI_INPUTS_NOTICE.md      (FCI question inputs are third-party; not redistributed)
 │
 ├── NewtonSimAI_source/           ← the constrained tool's source code
-│                                    (also provides the physics backend the
-│                                     unconstrained sims call — see below)
+│                                    (the constrained condition's implementation)
 │
 ├── constrained_simulations_raw/  ← the constrained tool's original generated
 │                                    outputs (36 historical runs) + provenance
@@ -80,10 +77,17 @@ Licensing, citation, provenance, reproducibility, third-party notices, and a
 file manifest are provided in dedicated files at the repository root (added to
 prepare this repository as an archived research artifact).
 
-Each `unconstrained_simulations/Q##/` folder holds one generated simulation
-plus the FCI question image (`No.<n>.webp`) that was used as its input. Each
-question image is the corresponding **FCI figure in the manuscript**: Q05 =
-Figure 1, Q16 = Figure 2, Q17 = Figure 3, Q22 = Figure 4, Q23 = Figure 5.
+Each `unconstrained_simulations/Q##/` folder holds one complete Claude Opus 4.6
+generation as its **four generated files**: `index.html`,
+`styles_projectile.css`, `projectile.js`, and its own generated FastAPI backend
+`main_projectile.py`. Each generation is self-contained — it runs against its
+**own** `main_projectile.py`, not the constrained tool's backend.
+
+The FCI question images that were the inputs are **not redistributed** (they are
+third-party material — see `unconstrained_simulations/FCI_INPUTS_NOTICE.md` and
+`THIRD_PARTY_NOTICES.md`). For reference, each folder corresponds to an FCI item
+and a manuscript figure: Q05 = FCI Q5 = Figure 1, Q16 = FCI Q16 = Figure 2,
+Q17 = FCI Q17 = Figure 3, Q22 = FCI Q22 = Figure 4, Q23 = FCI Q23 = Figure 5.
 
 ---
 
@@ -144,10 +148,11 @@ is and isn't deterministic:
 
 - **Unconstrained condition — fully deterministic.** The five
   `unconstrained_simulations/Q##/` folders are the *fixed generated code* that
-  was scored (static HTML/JS). Running them reproduces the exact same behavior;
-  the trajectory maths come from the included physics backend, which is
-  deterministic. A reviewer re-checking the rubric against these should land on
-  the same per-criterion results.
+  was scored (static HTML/CSS/JS plus each generation's own
+  `main_projectile.py`). Running a generation against its **own** backend
+  reproduces the same behavior; the trajectory maths are deterministic. A
+  reviewer re-checking the rubric against these should land on the same
+  per-criterion results.
 - **Constrained condition — two paths.** (a) *Deterministic:* the exact
   generated outputs are archived in `constrained_simulations_raw/` (static code)
   — run those to reproduce behavior directly. (b) *Live tool:* running
@@ -163,36 +168,39 @@ Two things a reviewer should know before testing:
 1. **The unconstrained apps open with generic default inputs** (e.g. mass 1,
    height 50, speed 30, angle 45), not each question's scenario — the scoring is
    **feature-based** (is *modifiable mass* present and functional, do the motion
-   graphs populate, etc.), not a check of specific numbers. Each folder includes
-   its FCI question image (`No.<n>.webp`) so the intended scenario is on hand.
-2. **The physics backend must be running** (`127.0.0.1:8000`) for *either*
-   condition's simulations to compute, and an internet connection is needed for
-   the Chart.js plotting library (loaded from its CDN). See below.
+   graphs populate, etc.), not a check of specific numbers. The FCI question
+   scenarios are summarized in `unconstrained_simulations/FCI_INPUTS_NOTICE.md`
+   (the FCI images themselves are third-party and not redistributed).
+2. **A physics backend must be running** (`127.0.0.1:8000`) for the simulations
+   to compute — for the unconstrained sims, each generation's **own**
+   `main_projectile.py`; and an internet connection is needed for the Chart.js
+   plotting library (loaded from its CDN). See below.
 
 ---
 
 ## Running an unconstrained simulation
 
-Each simulation page fetches its trajectory/force time series from a small
-physics backend (FastAPI, `main_projectile.py`, included in
-`NewtonSimAI_source`). Opening `index.html` without the backend running will
-render the page, but the motion will not compute.
+Each unconstrained generation is self-contained: its `index.html` +
+`projectile.js` fetch their trajectory/force time series from **that
+generation's own** FastAPI backend, `main_projectile.py`, which lives in the
+same `Q##/` folder. Opening `index.html` without its backend running will render
+the page, but the motion will not compute.
 
 1. **Install the backend dependencies** (Python 3.9+):
    ```bash
    pip install fastapi uvicorn
    # On Windows you may need:  py -m pip install fastapi uvicorn
    ```
-2. **Start the physics backend** from the source template folder:
+2. **Start that generation's own backend** from its folder (one generation at a
+   time — each backend listens on port 8000):
    ```bash
-   cd NewtonSimAI_source/templates/Projectile_motion
+   cd unconstrained_simulations/Q05        # or Q16 / Q17 / Q22 / Q23
    uvicorn main_projectile:app --host 127.0.0.1 --port 8000
    # On Windows:  py -m uvicorn main_projectile:app --host 127.0.0.1 --port 8000
    ```
-3. **Open** the desired `unconstrained_simulations/Q##/index.html` in a browser.
-   The backend allows cross-origin requests, so the page fetches its data and
-   animates. (Keep an internet connection so the Chart.js plotting library loads
-   from its CDN.)
+3. **Open** that same folder's `index.html` in a browser. The backend allows
+   cross-origin requests, so the page fetches its data and animates. (Keep an
+   internet connection so the Chart.js plotting library loads from its CDN.)
 
 ---
 
