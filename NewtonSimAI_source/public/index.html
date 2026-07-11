@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screenshot → Simulation</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+
+<body>
+  <!-- =========================
+       SCREEN 1: Upload
+  ========================== -->
+  <main id="upload-stage" class="container screen">
+    <header class="header">
+      <h1>Screenshot → Simulation</h1>
+      <p class="subtitle">Upload a screenshot, and AI will convert it into a physics simulation.</p>
+    </header>
+
+    <section class="card">
+      <label class="upload-box" id="upload-area" aria-label="Upload screenshot">
+        <div class="upload-top">
+          <strong id="upload-title">Click to upload</strong>
+          <span class="upload-sub">or drag an image here</span>
+        </div>
+        <span class="hint">PNG/JPG recommended · Screenshot preferred</span>
+        <input type="file" id="image-input" accept="image/*" />
+      </label>
+
+      <div class="row">
+        <div class="file-pill" id="file-pill" aria-live="polite">
+          <span class="dot"></span>
+          <span id="file-pill-text">No file selected</span>
+        </div>
+
+        <button id="generate-btn" type="button" class="primary-btn">
+          Generate
+        </button>
+      </div>
+
+      <p id="validation-msg" class="validation" aria-live="polite"></p>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-note">Tip: crop tight around the diagram for best results.</span>
+    </footer>
+  </main>
+
+  <!-- =========================
+       SCREEN 2: Simulation
+  ========================== -->
+  <section id="sim-stage" class="sim-stage screen" aria-live="polite" style="display:none;">
+    <div class="sim-shell">
+      <div class="sim-topbar">
+        <div class="sim-left">
+          <span class="pill">Simulation</span>
+          <span id="sim-file" class="sim-file"></span>
+        </div>
+
+        <div class="sim-right">
+          <button id="restart-btn" type="button" class="ghost-btn">Restart</button>
+        </div>
+      </div>
+
+      <div id="sim-frame-wrap" class="sim-frame-wrap">
+        <!-- iframe injected here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       LOADING OVERLAY
+  ========================== -->
+  <div id="loading" class="loading-overlay" role="status" aria-live="polite" aria-label="Loading">
+    <div class="loading-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <div id="loading-title" class="loading-title">Generating simulation…</div>
+      <div id="loading-sub" class="loading-sub">Uploading screenshot and building your physics model.</div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- DOM ----------
+    const uploadStage = document.getElementById("upload-stage");
+    const simStage = document.getElementById("sim-stage");
+
+    const uploadArea = document.getElementById("upload-area");
+    const uploadTitle = document.getElementById("upload-title");
+    const imageInput = document.getElementById("image-input");
+
+    const filePill = document.getElementById("file-pill");
+    const filePillText = document.getElementById("file-pill-text");
+
+    const generateBtn = document.getElementById("generate-btn");
+    const validationMsg = document.getElementById("validation-msg");
+
+    const loading = document.getElementById("loading");
+    const loadingTitle = document.getElementById("loading-title");
+    const loadingSub = document.getElementById("loading-sub");
+
+    const simFrameWrap = document.getElementById("sim-frame-wrap");
+    const simFile = document.getElementById("sim-file");
+    const restartBtn = document.getElementById("restart-btn");
+
+    // ---------- STATE ----------
+    let imageFile = null;
+    let simIframe = null;
+
+    const session = {
+      runId: null,
+      simUrl: null,
+      uiMode: "force",
+      airEnabled: false,
+      airResistance: "ignored",
+      questionText: "",
+      simulationConfig: null
+    };
+
+    // ---------- UI HELPERS ----------
+    function setValidation(text, kind = "error") {
+      validationMsg.textContent = text || "";
+      validationMsg.classList.remove("error", "warn", "ok");
+      if (text) validationMsg.classList.add(kind);
+    }
+
+    function setFilePill(name) {
+      if (!name) {
+        filePill.classList.remove("has-file");
+        filePillText.textContent = "No file selected";
+        uploadTitle.textContent = "Click to upload";
+        return;
+      }
+      filePill.classList.add("has-file");
+      filePillText.textContent = name;
+      uploadTitle.textContent = "Selected file";
+    }
+
+    function showLoading(title, sub) {
+      loadingTitle.textContent = title || "Loading…";
+      loadingSub.textContent = sub || "";
+      loading.classList.add("show");
+    }
+
+    function hideLoading() {
+      loading.classList.remove("show");
+    }
+
+    function showUpload() {
+      uploadStage.style.display = "flex";
+      simStage.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    function showSim() {
+      uploadStage.style.display = "none";
+      simStage.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+
+    function unmountSimulation() {
+      if (!simIframe) return;
+      try { simIframe.src = "about:blank"; } catch (e) { }
+      simIframe.remove();
+      simIframe = null;
+      simFrameWrap.innerHTML = "";
+    }
+
+    function mountSimulation() {
+      if (!session.simUrl) return;
+
+      simFile.textContent = imageFile?.name ? `From: ${imageFile.name}` : "";
+
+      simIframe = document.createElement("iframe");
+      simIframe.className = "sim-iframe";
+      simIframe.setAttribute("title", "Generated physics simulation");
+      simIframe.src = session.simUrl;
+
+      simFrameWrap.innerHTML = "";
+      simFrameWrap.appendChild(simIframe);
+
+      simIframe.addEventListener("load", () => hideLoading());
+    }
+
+    function resetAll() {
+      imageFile = null;
+      session.runId = null;
+      session.simUrl = null;
+      session.uiMode = "force";
+      session.airEnabled = false;
+      session.airResistance = "ignored";
+      session.questionText = "";
+      session.simulationConfig = null;
+
+      if (imageInput) imageInput.value = "";
+      uploadArea.classList.remove("has-file", "dragover");
+      setFilePill("");
+      setValidation("");
+      generateBtn.disabled = false;
+      hideLoading();
+
+      unmountSimulation();
+      showUpload();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    // ---------- VALIDATION ----------
+    function validateScreenshot(file) {
+      return new Promise((resolve) => {
+        if (!file) return resolve({ ok: false, reason: "Please upload an image first." });
+        if (!file.type || !file.type.startsWith("image/")) {
+          return resolve({ ok: false, reason: "That file isn’t an image. Use PNG/JPG." });
+        }
+
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+
+        img.onload = () => {
+          const w = img.naturalWidth;
+          const h = img.naturalHeight;
+          URL.revokeObjectURL(url);
+
+          if (w < 250 || h < 150) {
+            return resolve({
+              ok: true,
+              warning: `Small image (${w}×${h}) — results may be less accurate.`
+            });
+          }
+          if (w < 120 || h < 80) {
+            return resolve({ ok: false, reason: "Image too small to read." });
+          }
+
+          const common = ["image/png", "image/jpeg", "image/jpg", "image/webp"].includes(file.type);
+          if (!common) return resolve({ ok: true, warning: "Uncommon image type — PNG/JPG is recommended." });
+
+          resolve({ ok: true });
+        };
+
+        img.onerror = () => {
+          URL.revokeObjectURL(url);
+          resolve({ ok: false, reason: "Couldn’t read the image. Try PNG/JPG." });
+        };
+
+        img.src = url;
+      });
+    }
+
+    // ---------- FILE PICK ----------
+    imageInput.addEventListener("change", async (e) => {
+      setValidation("");
+      imageFile = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+
+      if (!imageFile) {
+        setFilePill("");
+        return;
+      }
+
+      setFilePill(imageFile.name);
+      uploadArea.classList.add("has-file");
+
+      const v = await validateScreenshot(imageFile);
+      if (!v.ok) setValidation(v.reason, "error");
+      else if (v.warning) setValidation(v.warning, "warn");
+      else setValidation("");
+    });
+
+    // ---------- DRAG & DROP ----------
+    uploadArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadArea.classList.add("dragover");
+    });
+
+    uploadArea.addEventListener("dragleave", () => {
+      uploadArea.classList.remove("dragover");
+    });
+
+    uploadArea.addEventListener("drop", async (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove("dragover");
+      setValidation("");
+
+      const file = e.dataTransfer.files && e.dataTransfer.files[0] ? e.dataTransfer.files[0] : null;
+      if (!file) return;
+
+      if (!file.type.startsWith("image/")) {
+        setValidation("Please drop an image file (PNG/JPG).", "error");
+        return;
+      }
+
+      imageFile = file;
+      setFilePill(imageFile.name);
+      uploadArea.classList.add("has-file");
+
+      const v = await validateScreenshot(imageFile);
+      if (!v.ok) setValidation(v.reason, "error");
+      else if (v.warning) setValidation(v.warning, "warn");
+      else setValidation("");
+    });
+
+    // ---------- GENERATE ----------
+    generateBtn.addEventListener("click", async () => {
+      setValidation("");
+
+      const v = await validateScreenshot(imageFile);
+      if (!v.ok) {
+        setValidation(v.reason, "error");
+        return;
+      }
+      if (v.warning) setValidation(v.warning, "warn");
+
+      generateBtn.disabled = true;
+      showLoading("Generating…", "Uploading screenshot and generating simulation.");
+
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+      try {
+        const res = await fetch("/generate", { method: "POST", body: formData });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data?.error || `Server error ${res.status}`);
+        if (!data.simUrl) throw new Error("Missing simUrl in response");
+
+        // Save session
+        session.runId = data.runId || null;
+        session.simUrl = data.simUrl;
+        session.uiMode = data.uiMode || "force";
+        session.airEnabled = !!data.airEnabled;
+        session.airResistance = data.airResistance || (session.airEnabled ? "considered" : "ignored");
+        session.questionText = data.questionText || "";
+        session.simulationConfig = data.simulationConfig || null;
+
+        // Show sim
+        showSim();
+        showLoading("Loading simulation…", "Starting the simulation in a new frame.");
+        mountSimulation();
+
+      } catch (err) {
+        console.error(err);
+        hideLoading();
+        generateBtn.disabled = false;
+        setValidation("Error generating. Check server logs and try again.", "error");
+      } finally {
+        // If we stayed on upload, re-enable
+        if (uploadStage.style.display !== "none") generateBtn.disabled = false;
+      }
+    });
+
+    restartBtn.addEventListener("click", () => {
+      resetAll();
+    });
+
+    // Escape key: back from sim to upload
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && simStage.style.display !== "none") {
+        unmountSimulation();
+        showUpload();
+      }
+    });
+
+    // Boot
+    showUpload();
+  </script>
+</body>
+
+</html>

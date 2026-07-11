@@ -1,0 +1,27 @@
+{
+  "id": "projectile_motion",
+  "displayName": "Projectile Motion",
+  "version": "1.0",
+
+  "web": {
+    "root": "web",
+    "entry": "index_projectile.html",
+    "assets": ["projectile.js", "styles_projectile.css"]
+  },
+
+  "backend": {
+    "type": "fastapi",
+    "root": "backend",
+    "entryFile": "main_projectile.py",
+    "module": "main_projectile:app",
+    "host": "127.0.0.1",
+    "port": 8000
+  },
+
+  "api": {
+    "physicsBaseUrl": "http://127.0.0.1:8000",
+    "endpoints": {
+      "stats": "/projectile/stats"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+Scoring rule (applies to every component)
+For each answer, score 0–5 for the targeted component using this logic:
+You do NOT deduct for not mentioning an unasked special case (apex, terminal velocity, etc.).
+You DO deduct for incorrect statements relevant to the asked scenario, or for missing required elements the question explicitly requested.
+Think of it as: did they answer the asked thing correctly, using the correct concept?
+
+Rubric (0–5) per component
+A) Velocity vs Acceleration (0–5)
+Use this when the question asks about: velocity direction/magnitude, acceleration direction/magnitude, relationship between them, “speeding up vs slowing down,” or “what causes acceleration.”
+5 — Correctly distinguishes velocity vs acceleration and answers the asked property (direction/magnitude/change) correctly for the scenario; no contradictory statements.
+4 — Mostly correct; minor imprecision (wording, sign convention, or missing one explicitly requested detail), but the concept distinction is intact.
+3 — Partial: answers some requested parts correctly, but mixes terms once or has one unclear/unsupported claim.
+2 — Major conceptual error: treats velocity and acceleration as the same thing, or uses “force points where velocity points” logic, causing an incorrect answer to the asked question.
+1 — Mostly wrong; shows no reliable distinction; answer is largely guesswork.
+0 — No attempt / irrelevant.
+Common “major error” triggers (don’t require apex):
+Says acceleration is the same as velocity or always points in velocity direction.
+Claims “if velocity is zero then acceleration must be zero” (unless explicitly justified by forces in that scenario).
+
+B) Net force components → acceleration components (0–5)
+Use this when the question asks about: (\sum F_x), (\sum F_y), net force direction, what forces contribute in x vs y, or resulting (a_x, a_y).
+5 — Correctly uses component-wise reasoning ((\sum F_x \rightarrow a_x), (\sum F_y \rightarrow a_y)); identifies which forces act and maps them to axes correctly for the scenario asked.
+4 — Correct structure but minor slip (e.g., sign convention, missing one explicitly requested force) without changing the final meaning.
+3 — Some correct axis reasoning, but incomplete or contains one scalar/vector mix that creates ambiguity (still partially usable).
+2 — Major error: treats forces as scalars (“(F_x+F_y=ma)” with no vector meaning), adds magnitudes regardless of direction, or assigns a force to the wrong axis in a way that breaks the conclusion.
+1 — Mostly incorrect; no net-force logic.
+0 — No attempt / irrelevant.
+Major error triggers (scenario-agnostic):
+Adds component magnitudes without direction.
+Uses gravity to create horizontal acceleration in a context where gravity is the only force mentioned.
+Confuses “sum of forces” with “sum of accelerations.”
+
+C) Vector components (decomposition + interpretation) (0–5)
+Use this when the question asks about: breaking a vector into x/y, comparing components, directions of components, or predicting how x/y quantities change.
+5 — Correctly decomposes and/or interprets components as requested (qualitative or quantitative); uses consistent direction/sign language; answer matches scenario and what was asked.
+4 — Mostly correct; small math/notation slip OR one missing requested detail; overall interpretation remains correct.
+3 — Understands there are components and gives a partially correct statement, but can’t fully justify or misses a key requested part.
+2 — Major error: confuses component with magnitude, swaps axes/directions, or treats components as unrelated “extra vectors,” producing an incorrect conclusion.
+1 — Minimal understanding; mostly incorrect.
+0 — No attempt / irrelevant.
+Major error triggers:
+“(v_x) is the speed” / component = magnitude confusion.
+Claims components can be summed as magnitudes without direction.
+
+D) Air resistance force (0–5)
+Use this when the question asks about: direction of drag, effect of drag on motion/range/time, whether acceleration is constant with drag, how x/y behavior changes when drag is on.
+5 — Correctly states drag acts opposite motion (or opposite velocity) and answers the asked effect(s) correctly for the scenario; no contradictory claims.
+4 — Correct direction + at least one correct requested effect; missing a second requested effect or minor imprecision about dependence on speed.
+3 — Gets general idea (“slows it down”) but weak/unclear on the specific asked effect or axis impact.
+2 — Major error: wrong drag direction for the described motion, treats drag as constant in a way that breaks the asked conclusion, or claims drag increases speed/range.
+1 — Mostly wrong; vague and incorrect.
+0 — No attempt / irrelevant.
+Major error triggers:
+Drag points in a fixed global direction regardless of motion.
+Claims acceleration must remain constant even when drag is included (unless the problem explicitly defines a constant resistive force model).
+

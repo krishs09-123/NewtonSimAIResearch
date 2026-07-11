@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectile Motion Simulator</title>
+    <link rel="stylesheet" href="styles_projectile.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Server injection point for window.__SIM_CFG__ -->
+    <script>
+        // Server can inject: window.__SIM_CFG__ = { dropHeight_m: 50, ... };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar">
+            <h2>Controls</h2>
+            
+            <div class="control-group">
+                <label for="massInput">Mass (kg):</label>
+                <input type="number" id="massInput" min="0.1" max="10" step="0.1" value="1.0">
+            </div>
+            
+            <div class="control-group">
+                <label for="heightInput">Height (m):</label>
+                <input type="number" id="heightInput" min="0" max="200" step="1" value="50">
+            </div>
+            
+            <div class="control-group">
+                <label for="velocityInput">Speed (m/s):</label>
+                <input type="number" id="velocityInput" min="0" max="100" step="1" value="30">
+            </div>
+            
+            <div class="control-group">
+                <label for="angleInput">Angle (°):</label>
+                <input type="number" id="angleInput" min="0" max="90" step="1" value="45">
+            </div>
+            
+            <div class="mode-section">
+                <h3>Visualization Mode</h3>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="forceCheckbox" checked>
+                        Force Vectors
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="vectorCheckbox">
+                        Velocity Vectors
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="motionCheckbox">
+                        Motion Path
+                    </label>
+                </div>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" id="accelerationCheckbox">
+                        Acceleration
+                    </label>
+                </div>
+                <div class="checkbox-group" id="airCheckboxContainer">
+                    <label>
+                        <input type="checkbox" id="airCheckbox">
+                        Air Resistance (Visual)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button id="pauseBtn">Pause</button>
+                <button id="restartBtn">Restart</button>
+            </div>
+            
+            <div class="frame-section">
+                <h3>Freeze Frames</h3>
+                <button id="frameStartBtn">Start</button>
+                <button id="frameApexBtn">Apex</button>
+                <button id="frameEndBtn">End</button>
+            </div>
+            
+            <div class="scrubber-section">
+                <h3>Time Scrubber</h3>
+                <input type="range" id="timeScrubber" min="0" max="10" step="0.01" value="0">
+            </div>
+            
+            <div class="speed-section">
+                <h3>Playback Speed</h3>
+                <div id="speedButtons">
+                    <button class="speed-btn" data-speed="0.25">0.25x</button>
+                    <button class="speed-btn" data-speed="0.5">0.5x</button>
+                    <button class="speed-btn" data-speed="0.75">0.75x</button>
+                    <button class="speed-btn active" data-speed="1.0">1.0x</button>
+                    <button class="speed-btn" data-speed="1.25">1.25x</button>
+                    <button class="speed-btn" data-speed="1.5">1.5x</button>
+                    <button class="speed-btn" data-speed="1.75">1.75x</button>
+                    <button class="speed-btn" data-speed="2.0">2.0x</button>
+                </div>
+            </div>
+            
+            <!-- Legend/Key Box -->
+            <div id="keyBox">
+                <h3>Legend</h3>
+                <div id="keyForces" style="display: none;">
+                    <h4>Forces</h4>
+                    <table>
+                        <tr><td style="color: #ff0000;">→</td><td>Fg (Gravity)</td></tr>
+                        <tr><td style="color: #00ff00;">→</td><td>Fn (Normal)</td></tr>
+                        <tr id="keyRowFd" style="display: none;">
+                            <td style="color: #ff00ff;">→</td><td>Fd (Drag)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="keyVelocity" style="display: none;">
+                    <h4>Velocity</h4>
+                    <table>
+                        <tr><td style="color: #0000ff;">→</td><td>Vx</td></tr>
+                        <tr><td style="color: #00ffff;">→</td><td>Vy</td></tr>
+                        <tr><td style="color: #ff8800;">→</td><td>V (Total)</td></tr>
+                    </table>
+                </div>
+                <div id="keyMotion" style="display: none;">
+                    <h4>Motion</h4>
+                    <table>
+                        <tr id="keyRowTrail"><td>····</td><td>Trail</td></tr>
+                        <tr><td>- -</td><td>Coordinates</td></tr>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Canvas Area -->
+        <main class="main-content">
+            <div id="scene"></div>
+            
+            <!-- Graphs Grid -->
+            <div class="graphs-container">
+                <div class="graph-card" id="graph-card-x-t">
+                    <canvas id="graph-x-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-y-t">
+                    <canvas id="graph-y-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-vx-t">
+                    <canvas id="graph-vx-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-vy-t">
+                    <canvas id="graph-vy-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-Fg-t">
+                    <canvas id="graph-Fg-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-Fn-t">
+                    <canvas id="graph-Fn-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-Fg-m">
+                    <canvas id="graph-Fg-m"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-ax-t">
+                    <canvas id="graph-ax-t"></canvas>
+                </div>
+                <div class="graph-card" id="graph-card-ay-t">
+                    <canvas id="graph-ay-t"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Matter.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    
+    <!-- Load projectile.js last -->
+    <script src="projectile.js"></script>
+</body>
+</html>

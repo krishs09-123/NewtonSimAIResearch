@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projectile Simulation</title>
+  <link rel="stylesheet" href="styles_projectile.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script>
+    // Server-injected config (defaults — overridden by FastAPI serving)
+    window.__SIM_CFG__ = window.__SIM_CFG__ || {};
+  </script>
+</head>
+<body>
+
+<h1>Projectile Motion Simulation</h1>
+
+<div class="app-container">
+  <div class="main-row">
+
+    <!-- ═══ LEFT PANEL ═══ -->
+    <div class="left-panel">
+
+      <!-- Parameters -->
+      <div class="card">
+        <h3>Parameters</h3>
+        <div class="input-group">
+          <div class="input-row">
+            <label for="massInput">Mass (kg)</label>
+            <input type="number" id="massInput" value="1" min="0.01" step="0.1" />
+          </div>
+          <div class="input-row">
+            <label for="heightInput">Height (m)</label>
+            <input type="number" id="heightInput" value="50" min="0" step="1" />
+          </div>
+          <div class="input-row">
+            <label for="velocityInput">Speed (m/s)</label>
+            <input type="number" id="velocityInput" value="30" min="0" step="1" />
+          </div>
+          <div class="input-row">
+            <label for="angleInput">Angle (°)</label>
+            <input type="number" id="angleInput" value="45" min="0" max="90" step="1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Display Modes -->
+      <div class="card">
+        <h3>Display Mode</h3>
+        <div class="checkbox-group">
+          <div class="checkbox-row">
+            <input type="checkbox" id="forceCheckbox" checked />
+            <label for="forceCheckbox">Force vectors</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="vectorCheckbox" />
+            <label for="vectorCheckbox">Velocity vectors</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="motionCheckbox" />
+            <label for="motionCheckbox">Motion trail</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="accelerationCheckbox" />
+            <label for="accelerationCheckbox">Acceleration</label>
+          </div>
+          <hr style="border-color:#2a3a5e;margin:4px 0;" />
+          <div class="checkbox-row">
+            <input type="checkbox" id="airCheckbox" />
+            <label for="airCheckbox">Air resistance (visual)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key / Legend -->
+      <div class="card" id="keyBox">
+        <h3>Legend</h3>
+        <div id="keyForces" class="key-section">
+          <table>
+            <tr><td><span class="swatch" style="background:#ef4444"></span></td><td>Fg (gravity)</td></tr>
+            <tr><td><span class="swatch" style="background:#22c55e"></span></td><td>Fn (normal)</td></tr>
+            <tr id="keyRowFd"><td><span class="swatch" style="background:#f97316"></span></td><td>Fd (drag)</td></tr>
+          </table>
+        </div>
+        <div id="keyVelocity" class="key-section hidden">
+          <table>
+            <tr><td><span class="swatch" style="background:#3b82f6"></span></td><td>Vx</td></tr>
+            <tr><td><span class="swatch" style="background:#a855f7"></span></td><td>Vy</td></tr>
+            <tr><td><span class="swatch" style="background:#eab308"></span></td><td>V (resultant)</td></tr>
+          </table>
+        </div>
+        <div id="keyMotion" class="key-section hidden">
+          <table>
+            <tr id="keyRowTrail"><td><span class="swatch" style="background:#f472b6"></span></td><td>Trail</td></tr>
+            <tr><td><span class="swatch" style="background:#38bdf8"></span></td><td>x, y coords</td></tr>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══ CENTER PANEL ═══ -->
+    <div class="center-panel">
+
+      <!-- Scene -->
+      <div id="scene"></div>
+
+      <!-- Scrubber -->
+      <div class="scrubber-row">
+        <input type="range" id="timeScrubber" min="0" max="10" value="0" step="0.01" />
+      </div>
+
+      <!-- Controls row -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;">
+        <div class="btn-group">
+          <button id="pauseBtn">Pause</button>
+          <button id="restartBtn">Restart</button>
+        </div>
+        <div class="btn-group">
+          <button id="frameStartBtn">Start</button>
+          <button id="frameApexBtn">Apex</button>
+          <button id="frameEndBtn">End</button>
+        </div>
+        <div id="speedButtons">
+          <button class="speed-btn" data-speed="0.25">0.25×</button>
+          <button class="speed-btn" data-speed="0.5">0.5×</button>
+          <button class="speed-btn" data-speed="0.75">0.75×</button>
+          <button class="speed-btn active" data-speed="1.0">1.0×</button>
+          <button class="speed-btn" data-speed="1.25">1.25×</button>
+          <button class="speed-btn" data-speed="1.5">1.5×</button>
+          <button class="speed-btn" data-speed="1.75">1.75×</button>
+          <button class="speed-btn" data-speed="2.0">2.0×</button>
+        </div>
+      </div>
+
+      <!-- Graphs grid -->
+      <div class="graphs-grid">
+        <div class="graph-wrap" id="wrap-x-t"><canvas id="graph-x-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-y-t"><canvas id="graph-y-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-vx-t"><canvas id="graph-vx-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-vy-t"><canvas id="graph-vy-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-Fg-t"><canvas id="graph-Fg-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-Fn-t"><canvas id="graph-Fn-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-Fg-m"><canvas id="graph-Fg-m"></canvas></div>
+        <div class="graph-wrap" id="wrap-ax-t"><canvas id="graph-ax-t"></canvas></div>
+        <div class="graph-wrap" id="wrap-ay-t"><canvas id="graph-ay-t"></canvas></div>
+      </div>
+
+    </div>
+
+    <!-- ═══ RIGHT PANEL (reserved) ═══ -->
+    <div class="right-panel">
+      <div class="card">
+        <h3>Info</h3>
+        <div id="infoPanel" style="font-size:0.75rem;color:var(--text-dim);">
+          <p id="infoTime">t = 0.00 s</p>
+          <p id="infoPos">x = 0.00 m, y = 0.00 m</p>
+          <p id="infoVel">v = 0.00 m/s</p>
+          <p id="infoPhase">Phase: ready</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Matter.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+<!-- Simulation script (last) -->
+<script src="projectile.js"></script>
+
+</body>
+</html>

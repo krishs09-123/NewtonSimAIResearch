@@ -1,0 +1,266 @@
+/* styles_projectile.css — Projectile Simulation UI */
+
+:root {
+  --bg: #1a1a2e;
+  --surface: #16213e;
+  --surface2: #0f3460;
+  --accent: #e94560;
+  --accent2: #00d2ff;
+  --text: #eaeaea;
+  --text-dim: #8892a4;
+  --border: #2a3a5e;
+  --input-bg: #0d1b36;
+  --btn-bg: #0f3460;
+  --btn-hover: #e94560;
+  --green: #4ade80;
+  --yellow: #facc15;
+  --orange: #fb923c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.4;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  padding: 12px 0 4px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: var(--accent2);
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.app-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 12px 20px;
+}
+
+.main-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.left-panel {
+  flex: 0 0 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.center-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.right-panel {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Scene ───────────────────────────────────────────────── */
+#scene {
+  width: 800px;
+  height: 700px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #0a0e1a;
+  position: relative;
+}
+#scene canvas {
+  display: block;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+}
+.card h3 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent2);
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+/* ── Inputs ──────────────────────────────────────────────── */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.input-row label {
+  flex: 0 0 70px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.input-row input[type="number"] {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 4px 6px;
+  font-size: 0.82rem;
+  width: 100%;
+}
+.input-row input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent2);
+}
+
+/* ── Checkboxes ──────────────────────────────────────────── */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+}
+.checkbox-row input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+button {
+  background: var(--btn-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+button:hover {
+  background: var(--btn-hover);
+  border-color: var(--btn-hover);
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.btn-group button {
+  flex: 1 1 45%;
+}
+
+/* ── Speed buttons ────────────────────────────────────────── */
+#speedButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+#speedButtons .speed-btn {
+  flex: 1 1 22%;
+  font-size: 0.7rem;
+  padding: 3px 4px;
+  text-align: center;
+}
+#speedButtons .speed-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Scrubber ─────────────────────────────────────────────── */
+.scrubber-row {
+  padding: 6px 0;
+}
+#timeScrubber {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ── Graphs ───────────────────────────────────────────────── */
+.graphs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.graph-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.graph-wrap canvas {
+  width: 100% !important;
+  height: 120px !important;
+}
+.graph-wrap.hidden {
+  display: none;
+}
+
+/* ── Key / Legend ──────────────────────────────────────────── */
+#keyBox {
+  font-size: 0.72rem;
+}
+#keyBox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#keyBox th, #keyBox td {
+  text-align: left;
+  padding: 2px 4px;
+  border-bottom: 1px solid var(--border);
+}
+#keyBox .swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.key-section { margin-bottom: 6px; }
+.key-section.hidden { display: none; }
+
+#keyRowFd.hidden, #keyRowTrail.hidden { display: none; }
+
+/* ── Responsive tweaks ────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .main-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-panel, .right-panel {
+    flex: unset;
+    width: 100%;
+    max-width: 800px;
+  }
+  .graphs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

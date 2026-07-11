@@ -1,0 +1,294 @@
+/* styles_projectile.css — Projectile Simulation Styles */
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #181b24;
+  --surface2: #1f2330;
+  --border: #2a2e3a;
+  --text: #e0e2ea;
+  --text-dim: #8b8f9e;
+  --accent: #5b9cf5;
+  --accent-dim: #3a6fc0;
+  --green: #5be0a0;
+  --red: #f56565;
+  --orange: #f5a05b;
+  --purple: #a78bfa;
+  --radius: 6px;
+}
+
+html, body {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ── Layout ──────────────────────────────────────────────── */
+.app-shell {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.left-panel {
+  flex: 0 0 820px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+/* ── Scene ────────────────────────────────────────────────── */
+#scene {
+  width: 800px;
+  height: 700px;
+  background: #0d0f15;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+
+#scene canvas {
+  display: block;
+}
+
+/* ── Control Bar ─────────────────────────────────────────── */
+.control-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.control-bar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.control-bar label input[type="number"] {
+  width: 58px;
+}
+
+.control-bar .sep {
+  width: 1px;
+  height: 22px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Inputs ──────────────────────────────────────────────── */
+input[type="number"],
+input[type="range"] {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+input[type="number"]:focus,
+input[type="range"]:focus {
+  border-color: var(--accent);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+button {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+button:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button.active,
+button.speed-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ── Scrubber Row ────────────────────────────────────────── */
+.scrubber-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.scrubber-row input[type="range"] {
+  flex: 1;
+  height: 6px;
+  cursor: pointer;
+}
+
+.scrubber-row .time-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  min-width: 60px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Speed Buttons ───────────────────────────────────────── */
+#speedButtons {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+#speedButtons .speed-btn {
+  padding: 3px 7px;
+  font-size: 11px;
+}
+
+/* ── Frame Buttons ───────────────────────────────────────── */
+.frame-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.frame-btns button {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+/* ── Key Box ─────────────────────────────────────────────── */
+#keyBox {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 11px;
+}
+
+#keyBox h4 {
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+#keyBox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#keyBox td {
+  padding: 2px 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+#keyBox .color-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.key-section {
+  margin-bottom: 8px;
+}
+
+.key-section:last-child { margin-bottom: 0; }
+
+.hidden { display: none !important; }
+
+/* ── Graphs ──────────────────────────────────────────────── */
+.graph-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.graph-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px;
+  position: relative;
+}
+
+.graph-wrap canvas {
+  width: 100% !important;
+  height: 120px !important;
+}
+
+.graph-wrap.hidden-graph {
+  display: none;
+}
+
+/* ── Checkbox Group ──────────────────────────────────────── */
+.mode-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mode-group label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+/* ── Misc ────────────────────────────────────────────────── */
+.panel-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}

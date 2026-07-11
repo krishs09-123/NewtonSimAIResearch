@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projectile Simulation</title>
+  <link rel="stylesheet" href="styles_projectile.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script>
+    /* Server-injected config — override from backend or leave defaults */
+    window.__SIM_CFG__ = window.__SIM_CFG__ || {};
+  </script>
+</head>
+<body>
+
+<div class="app-shell">
+  <!-- ════════ LEFT PANEL ════════ -->
+  <div class="left-panel">
+
+    <!-- Simulation canvas -->
+    <div id="scene"></div>
+
+    <!-- Param + mode bar -->
+    <div class="control-bar">
+      <label>Mass (kg) <input type="number" id="massInput" value="1" min="0.1" step="0.1" /></label>
+      <label>Height (m) <input type="number" id="heightInput" value="20" min="0" step="1" /></label>
+      <label>Speed (m/s) <input type="number" id="velocityInput" value="30" min="0" step="1" /></label>
+      <label>Angle (°) <input type="number" id="angleInput" value="45" min="0" max="90" step="1" /></label>
+      <div class="sep"></div>
+      <div class="mode-group">
+        <label><input type="checkbox" id="forceCheckbox" checked /> Forces</label>
+        <label><input type="checkbox" id="vectorCheckbox" /> Velocity</label>
+        <label><input type="checkbox" id="motionCheckbox" /> Motion</label>
+        <label><input type="checkbox" id="accelerationCheckbox" /> Accel</label>
+        <label><input type="checkbox" id="airCheckbox" /> Air</label>
+      </div>
+    </div>
+
+    <!-- Buttons row -->
+    <div class="control-bar">
+      <button id="pauseBtn">Pause</button>
+      <button id="restartBtn">Restart</button>
+      <div class="sep"></div>
+      <div class="frame-btns">
+        <button id="frameStartBtn">⏮ Start</button>
+        <button id="frameApexBtn">⏫ Apex</button>
+        <button id="frameEndBtn">⏭ End</button>
+      </div>
+      <div class="sep"></div>
+      <div id="speedButtons">
+        <button class="speed-btn" data-speed="0.25">0.25×</button>
+        <button class="speed-btn" data-speed="0.5">0.5×</button>
+        <button class="speed-btn" data-speed="0.75">0.75×</button>
+        <button class="speed-btn active" data-speed="1.0">1.0×</button>
+        <button class="speed-btn" data-speed="1.25">1.25×</button>
+        <button class="speed-btn" data-speed="1.5">1.5×</button>
+        <button class="speed-btn" data-speed="1.75">1.75×</button>
+        <button class="speed-btn" data-speed="2.0">2.0×</button>
+      </div>
+    </div>
+
+    <!-- Scrubber -->
+    <div class="scrubber-row">
+      <span style="font-size:11px;color:var(--text-dim)">Time</span>
+      <input type="range" id="timeScrubber" min="0" max="10" step="0.01" value="0" />
+      <span class="time-label" id="scrubberTimeLabel">0.00 s</span>
+    </div>
+
+  </div>
+
+  <!-- ════════ RIGHT PANEL ════════ -->
+  <div class="right-panel">
+
+    <!-- Key / Legend box -->
+    <div id="keyBox">
+      <h4>Legend</h4>
+
+      <div id="keyForces" class="key-section">
+        <table>
+          <tr><td><span class="color-swatch" style="background:#f56565"></span>Fg (gravity)</td><td>Weight down</td></tr>
+          <tr><td><span class="color-swatch" style="background:#5be0a0"></span>Fn (normal)</td><td>Normal up (ground)</td></tr>
+          <tr id="keyRowFd"><td><span class="color-swatch" style="background:#f5a05b"></span>Fd (drag)</td><td>Air drag (visual)</td></tr>
+        </table>
+      </div>
+
+      <div id="keyVelocity" class="key-section hidden">
+        <table>
+          <tr><td><span class="color-swatch" style="background:#5b9cf5"></span>Vx</td><td>Horizontal velocity</td></tr>
+          <tr><td><span class="color-swatch" style="background:#a78bfa"></span>Vy</td><td>Vertical velocity</td></tr>
+          <tr><td><span class="color-swatch" style="background:#e0e2ea"></span>V</td><td>Resultant velocity</td></tr>
+        </table>
+      </div>
+
+      <div id="keyMotion" class="key-section hidden">
+        <table>
+          <tr id="keyRowTrail"><td><span class="color-swatch" style="background:rgba(91,156,245,0.5)"></span>Trail</td><td>Path trace</td></tr>
+          <tr><td><span class="color-swatch" style="background:#5b9cf5"></span>x(t)</td><td>Horizontal position</td></tr>
+          <tr><td><span class="color-swatch" style="background:#a78bfa"></span>y(t)</td><td>Vertical position</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Graphs -->
+    <div class="graph-grid">
+      <div class="graph-wrap" id="wrap-graph-x-t"><canvas id="graph-x-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-y-t"><canvas id="graph-y-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-vx-t"><canvas id="graph-vx-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-vy-t"><canvas id="graph-vy-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-Fg-t"><canvas id="graph-Fg-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-Fn-t"><canvas id="graph-Fn-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-Fg-m"><canvas id="graph-Fg-m"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-ax-t"><canvas id="graph-ax-t"></canvas></div>
+      <div class="graph-wrap" id="wrap-graph-ay-t"><canvas id="graph-ay-t"></canvas></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Matter.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+<!-- Application script -->
+<script src="projectile.js"></script>
+</body>
+</html>
