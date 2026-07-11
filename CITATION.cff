@@ -10,6 +10,14 @@ authors:
     given-names: Krish
     orcid: "https://orcid.org/0009-0006-2386-0443"
 version: 1.0.0
+doi: 10.5281/zenodo.21314579
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21314579
+    description: "Version DOI (this release, v1.0.0)"
+  - type: doi
+    value: 10.5281/zenodo.21314578
+    description: "Concept DOI (all versions)"
 date-released: "2026-07-11"
 license:
   - MIT

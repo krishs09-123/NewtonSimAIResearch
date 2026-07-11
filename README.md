@@ -1,12 +1,27 @@
 # Constrained vs. Unconstrained AI Problem-to-Simulation Generation
 
+[![DOI](https://zenodo.org/badge/1297605690.svg)](https://doi.org/10.5281/zenodo.21314578)
+
 Supplementary materials and code for the pilot study **"Constrained vs.
 Unconstrained Free-Fall and Projectile-Motion AI Problem-to-Simulation
 Generation."**
 
 This repository lets a reader inspect everything behind the paper: the
 unconstrained simulation artifacts, the constrained tool's source code, the
-Force Concept Inventory (FCI) problem inputs, and the scored results.
+prompts, and the scored results. (The Force Concept Inventory question inputs
+are third-party material and are **not** redistributed here — see
+`THIRD_PARTY_NOTICES.md`.)
+
+## DOI / citation
+
+This repository is archived on Zenodo:
+
+- **Version DOI (this release, v1.0.0)** — cite this exact archived version in
+  the manuscript: [10.5281/zenodo.21314579](https://doi.org/10.5281/zenodo.21314579)
+- **Concept DOI (all versions / latest)** — the badge above:
+  [10.5281/zenodo.21314578](https://doi.org/10.5281/zenodo.21314578)
+
+See `CITATION.cff` for citation metadata.
 
 ---
 
