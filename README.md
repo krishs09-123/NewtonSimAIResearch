@@ -52,6 +52,9 @@ NewtonSimAI_Research/
 │                                    (also provides the physics backend the
 │                                     unconstrained sims call — see below)
 │
+├── constrained_simulations_raw/  ← the constrained tool's original generated
+│                                    outputs (36 historical runs) + provenance
+│
 ├── scoring_data.csv              ← per-simulation summary scores (paper Table 2)
 └── criterion_level_scoring.csv   ← full criterion-by-criterion matrix (170 rows)
 ```
@@ -143,6 +146,25 @@ GPT-4o-mini extraction step), then `npm start` and open
 
 **Intentionally excluded** from the source: `node_modules/` (reinstall with
 `npm install`) and `.env` (contained a live API key; use `.env.example`).
+
+---
+
+## Constrained generated outputs — `constrained_simulations_raw/`
+
+Alongside the source, this folder archives the **original generated simulations
+the constrained tool produced**, recovered from the actual tool instance used in
+the study — **36 historical runs**, each with the tool's emitted `index.html`,
+`projectile.js`, and `styles_projectiles.css`. The extracted configuration is
+injected into `projectile.js` (not saved as separate JSON), and
+`constrained_runs_parameters.csv` tabulates those parameters for all 36 runs.
+
+Because the 36 runs mix the five scored generations with repeated test runs and
+nothing logs which folder was scored, individual runs **cannot be certified** as
+the exact scored artifact. As a convenience, one best-scenario-fit run per
+question is **flagged** (`flagged_best_match` column) with stated confidence.
+See `constrained_simulations_raw/PROVENANCE.md` for the full explanation and the
+flagging table. (All constrained runs scored 100% on their applicable criteria,
+so the flagged run and its near-duplicates are behaviorally equivalent.)
 
 ---
 

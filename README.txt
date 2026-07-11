@@ -57,6 +57,9 @@ NewtonSimAI_Supplementary_Materials/
 |                                     (also provides the physics backend used to
 |                                      run the unconstrained sims -- see Section 4)
 |
++-- constrained_simulations_raw/   <- the constrained tool's original generated
+|                                     outputs (36 historical runs) + PROVENANCE.md
+|
 +-- scoring_data.csv               <- per-simulation summary scores (paper Table 2)
 |
 +-- criterion_level_scoring.csv    <- full criterion-by-criterion matrix (170 rows)
@@ -148,6 +151,31 @@ tool's GPT-4o-mini extraction), then `npm start` and open http://localhost:3000.
 Excluded from this archive (intentionally):
   * node_modules/ - reinstall with `npm install`; omitted for size.
   * .env          - contained a live API key; NOT distributed. Use .env.example.
+
+
+--------------------------------------------------------------------------------
+5b. constrained_simulations_raw/  (the constrained tool's generated outputs)
+--------------------------------------------------------------------------------
+
+This folder archives the ORIGINAL generated simulations that the constrained
+tool (NewtonSimAI) produced, recovered from the actual tool instance used in the
+study -- 36 historical runs. Each sim_<hash>/ folder holds the tool's emitted
+index.html, projectile.js, and styles_projectiles.css. The extracted config is
+injected into projectile.js (dropHeight_m, launchSpeed_mps, launchAngle_deg,
+ballMass, airEnabled); the tool did not save a separate JSON config.
+
+  constrained_runs_parameters.csv  Extracted parameters for all 36 runs, plus a
+                                   scenario signature and a best-match flag.
+  PROVENANCE.md                    Full explanation + the best-match table.
+
+Limitation: the study scored five constrained simulations, but this folder holds
+36 runs (the unpruned generation history, mixing scored runs with test runs).
+The runs collapse to only 11 distinct parameter signatures and nothing logs
+which folder was scored, so no single run can be CERTIFIED as the exact scored
+artifact. One best-scenario-fit run per question is flagged (with confidence) in
+the CSV and PROVENANCE.md as a convenience, not a certification. All constrained
+runs scored 100% on applicable criteria, so a flagged run and its near-duplicates
+are behaviorally equivalent for scoring.
 
 
 --------------------------------------------------------------------------------
