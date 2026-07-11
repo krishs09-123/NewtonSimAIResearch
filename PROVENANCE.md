@@ -55,11 +55,18 @@ invented here.
 
 - The constrained extraction JSON configurations (config was injected into the
   generated `projectile.js`, not saved separately).
-- A record identifying which of the 36 archived constrained runs were the five
-  scored outputs (see `constrained_simulations_raw/PROVENANCE.md`).
 
-These are stated as limitations, not reconstructed. See
+This is stated as a limitation, not reconstructed. See
 `ARTIFACT_AVAILABILITY.md` for the full inventory.
+
+## Constrained artifact provenance
+
+The five constrained generations (`constrained_simulations/Q05..Q23/`) are the
+generations that were scored in the study, one per question, identified by the
+study author who performed the scoring. They were produced by the NewtonSimAI
+tool and recovered from that tool instance's generated output. The tool's output
+directory also accumulated additional non-study test/duplicate runs during
+development; those are not part of the study and are not included.
 
 ## Derivation of `data/criterion_level_scoring.csv`
 

@@ -46,6 +46,6 @@ Each dependency's license governs its use; consult the respective projects.
 ## AI-generated outputs
 
 The generated simulation outputs (`unconstrained_simulations/`,
-`constrained_simulations_raw/`) were produced by AI models (Claude Opus 4.6;
+`constrained_simulations/`) were produced by AI models (Claude Opus 4.6;
 GPT-4o-mini for the constrained extraction step). See `LICENSE_SCOPE.md` §3 for
 how these are treated.

@@ -3,6 +3,27 @@
 All notable changes to this research archive are documented here. This project
 uses semantic-version tags; the archive is deposited to Zenodo per release.
 
+## [1.0.3] — 2026-07-11
+
+Constrained-condition artifacts corrected.
+
+### Corrected
+
+- **The constrained condition is now archived as the five scored generations**
+  (`constrained_simulations/Q05..Q23/`), one per question — the generations the
+  study author scored — mirroring the unconstrained condition. Removed the
+  previous `constrained_simulations_raw/` folder, which had presented the
+  constrained tool's full output directory as "36 historical runs" and hedged
+  the five scored artifacts as uncertain "best-match" guesses. That framing was
+  wrong: the constrained condition has one scored generation per question, and
+  the extra folders were non-study test/duplicate runs from tool development.
+- **`REPRODUCIBILITY.md`** now states that the constrained-condition rubric audit
+  **is** reproducible on the exact scored artifacts (both conditions' scored
+  generations are archived); the prior "cannot be reproduced / not certified"
+  limitation is removed.
+- Updated `README.md`, `README.txt`, `ARTIFACT_AVAILABILITY.md`, `PROVENANCE.md`,
+  `LICENSE_SCOPE.md`, and `THIRD_PARTY_NOTICES.md` accordingly.
+
 ## [1.0.2] — 2026-07-11
 
 Citation-metadata consistency fix (no data or code changes).

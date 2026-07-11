@@ -57,8 +57,8 @@ NewtonSimAI_Supplementary_Materials/
 +-- NewtonSimAI_source/            <- the constrained tool's source code
 |                                     (the constrained condition's implementation)
 |
-+-- constrained_simulations_raw/   <- the constrained tool's original generated
-|                                     outputs (36 historical runs) + PROVENANCE.md
++-- constrained_simulations/       <- the 5 scored NewtonSimAI generations, one
+|                                     per question (Q05..Q23) + README.md
 |
 +-- prompts/                       <- constrained extraction system prompt (verbatim)
 |                                     + prompt provenance (prompts/README.md)
@@ -166,28 +166,28 @@ Excluded from this archive (intentionally):
 
 
 --------------------------------------------------------------------------------
-5b. constrained_simulations_raw/  (the constrained tool's generated outputs)
+5b. constrained_simulations/  (the 5 scored NewtonSimAI generations)
 --------------------------------------------------------------------------------
 
-This folder archives the ORIGINAL generated simulations that the constrained
-tool (NewtonSimAI) produced, recovered from the actual tool instance used in the
-study -- 36 historical runs. Each sim_<hash>/ folder holds the tool's emitted
-index.html, projectile.js, and styles_projectiles.css. The extracted config is
-injected into projectile.js (dropHeight_m, launchSpeed_mps, launchAngle_deg,
-ballMass, airEnabled); the tool did not save a separate JSON config.
+This folder holds the FIVE constrained-condition generations scored in the study
+-- one per FCI question (Q05..Q23), the exact generations the study author
+audited. Each Q## folder holds the tool's emitted index.html, projectile.js, and
+styles_projectiles.css. Every constrained generation scored 100% of its
+applicable rubric criteria.
 
-  constrained_runs_parameters.csv  Extracted parameters for all 36 runs, plus a
-                                   scenario signature and a best-match flag.
-  PROVENANCE.md                    Full explanation + the best-match table.
+The extracted config is injected into projectile.js (dropHeight_m,
+launchSpeed_mps, launchAngle_deg, ballMass, airEnabled); the tool did not save a
+separate JSON config.
 
-Limitation: the study scored five constrained simulations, but this folder holds
-36 runs (the unpruned generation history, mixing scored runs with test runs).
-The runs collapse to only 11 distinct parameter signatures and nothing logs
-which folder was scored, so no single run can be CERTIFIED as the exact scored
-artifact. One best-scenario-fit run per question is flagged (with confidence) in
-the CSV and PROVENANCE.md as a convenience, not a certification. All constrained
-runs scored 100% on applicable criteria, so a flagged run and its near-duplicates
-are behaviorally equivalent for scoring.
+Unlike the unconstrained generations (each of which ships its own backend), the
+constrained generations are served by the shared NewtonSimAI framework backend
+(NewtonSimAI_source/templates/Projectile_motion/main_projectile.py) at
+http://127.0.0.1:8000. See constrained_simulations/README.md for the
+question/figure mapping and run steps.
+
+Note: the constrained tool's generated/ output directory also accumulated
+additional non-study test/duplicate runs during tool development; those are not
+part of the study and are not included here.
 
 
 --------------------------------------------------------------------------------

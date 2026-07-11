@@ -74,11 +74,12 @@ NewtonSimAI_Research/
 │   ├── Q16/  Q17/  Q22/  Q23/   (same 4 generated files each)
 │   └── FCI_INPUTS_NOTICE.md      (FCI question inputs are third-party; not redistributed)
 │
-├── NewtonSimAI_source/           ← the constrained tool's source code
-│                                    (the constrained condition's implementation)
+├── constrained_simulations/      ← NewtonSimAI generations, one per question (the
+│   ├── Q05/  Q16/  Q17/  Q22/  Q23/   five scored constrained artifacts)
+│   └── README.md
 │
-├── constrained_simulations_raw/  ← the constrained tool's original generated
-│                                    outputs (36 historical runs) + provenance
+├── NewtonSimAI_source/           ← the constrained tool's source code + the
+│                                    shared physics backend the constrained sims use
 │
 ├── prompts/                      ← constrained extraction system prompt (verbatim)
 │                                    + prompt provenance notes
@@ -170,15 +171,14 @@ is and isn't deterministic:
   reproduces the same behavior; the trajectory maths are deterministic. A
   reviewer re-checking the rubric against these should land on the same
   per-criterion results.
-- **Constrained condition — two paths.** (a) *Deterministic:* the exact
-  generated outputs are archived in `constrained_simulations_raw/` (static code)
-  — run those to reproduce behavior directly. (b) *Live tool:* running
-  `NewtonSimAI_source/` re-generates from scratch and calls GPT-4o-mini for the
-  extraction step, which needs an OpenAI API key (costs money) and is **not
-  byte-for-byte deterministic** — a fresh run can differ in the extracted
-  numbers. The rubric criteria it was scored on are framework-guaranteed
-  features, so a live run still meets them (the study recorded 100%), but for an
-  *exact* artifact match use the archived outputs.
+- **Constrained condition — fully deterministic.** The five
+  `constrained_simulations/Q##/` folders are the *fixed generated code* that was
+  scored (static HTML/CSS/JS), served by the shared NewtonSimAI backend. Running
+  them reproduces the same behavior. (Re-running the **live tool**,
+  `NewtonSimAI_source/`, instead re-generates from scratch and calls GPT-4o-mini
+  for the extraction step — that path needs an OpenAI API key and is **not**
+  byte-for-byte deterministic, so for an exact artifact match use the archived
+  generations, not a fresh live run.)
 
 Two things a reviewer should know before testing:
 
@@ -235,22 +235,19 @@ GPT-4o-mini extraction step), then `npm start` and open
 
 ---
 
-## Constrained generated outputs — `constrained_simulations_raw/`
+## Constrained generated outputs — `constrained_simulations/`
 
-Alongside the source, this folder archives the **original generated simulations
-the constrained tool produced**, recovered from the actual tool instance used in
-the study — **36 historical runs**, each with the tool's emitted `index.html`,
-`projectile.js`, and `styles_projectiles.css`. The extracted configuration is
-injected into `projectile.js` (not saved as separate JSON), and
-`constrained_runs_parameters.csv` tabulates those parameters for all 36 runs.
+`constrained_simulations/Q05..Q23/` holds the **five constrained-condition
+generations scored in the study**, one per FCI question — the exact generations
+the study author audited (each `index.html`, `projectile.js`,
+`styles_projectiles.css`). Every constrained generation scored 100% of its
+applicable rubric criteria.
 
-Because the 36 runs mix the five scored generations with repeated test runs and
-nothing logs which folder was scored, individual runs **cannot be certified** as
-the exact scored artifact. As a convenience, one best-scenario-fit run per
-question is **flagged** (`flagged_best_match` column) with stated confidence.
-See `constrained_simulations_raw/PROVENANCE.md` for the full explanation and the
-flagging table. (All constrained runs scored 100% on their applicable criteria,
-so the flagged run and its near-duplicates are behaviorally equivalent.)
+Unlike the unconstrained generations, these do **not** ship their own backend —
+they are served by the shared NewtonSimAI framework backend
+(`NewtonSimAI_source/templates/Projectile_motion/main_projectile.py`) at
+`127.0.0.1:8000`. See `constrained_simulations/README.md` for the
+question/figure mapping and run steps.
 
 ---
 

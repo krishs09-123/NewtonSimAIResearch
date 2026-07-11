@@ -65,28 +65,22 @@ python scripts/validate_research_data.py          # exits nonzero on any disagre
 
 ## 5. What reproduces exactly, and what does not
 
-- **Reproduces the reported files exactly:** the unconstrained simulation
-  artifacts (`unconstrained_simulations/`) are the fixed generated code that was
-  scored — running them reproduces the same behavior. The derived
+- **Reproduces the reported files exactly:** the fixed generated code that was
+  scored is archived for **both** conditions — `unconstrained_simulations/`
+  (five generations, each with its own backend) and `constrained_simulations/`
+  (the five scored NewtonSimAI generations, served by the shared backend).
+  Running them reproduces the same behavior, so the rubric audit can be
+  re-performed on the exact scored artifacts. The derived
   `data/criterion_level_scoring.csv` is regenerated deterministically and
   validated against the reported summary.
-- **Allows the workflow to be rerun, but does not reproduce the exact historical
-  output:** running the **constrained tool** live re-invokes GPT-4o-mini and
-  regenerates from scratch. It does not reconstruct the exact scored output
-  folders. The `constrained_simulations_raw/` archive holds the tool's original
-  generation history, but the specific five scored runs are not individually
-  identified (see its `PROVENANCE.md`).
+- **Re-running the live tool does not reproduce the exact historical output:**
+  running the **constrained tool** (`NewtonSimAI_source/`) live re-invokes
+  GPT-4o-mini and regenerates from scratch, which is not byte-for-byte
+  deterministic. For an exact artifact match, use the archived
+  `constrained_simulations/` generations rather than a fresh live run.
 
 ## Limitations (please read)
 
-- **The constrained-condition audit cannot be exactly reproduced as originally
-  performed.** `constrained_simulations_raw/` holds 36 historical runs that mix
-  the five scored generations with test and duplicate runs, and no run-level
-  scoring log was kept, so the exact five folders used for the manuscript cannot
-  be certified. The repository flags five best matches, but explicitly labels
-  them as informed guesses, not certified scored artifacts. A reader can inspect
-  and re-run the constrained tool, but cannot re-perform the original
-  constrained-condition audit on the exact same artifacts.
 - **The constrained condition requires an OpenAI API key** for its extraction
   step; that step incurs cost.
 - **API-mediated outputs may vary.** A provider can change model behavior behind

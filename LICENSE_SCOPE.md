@@ -26,7 +26,7 @@ Creative Commons Attribution 4.0 International License:
 - `README.md`, `README.txt`, `PROVENANCE.md`, `REPRODUCIBILITY.md`,
   `ARTIFACT_AVAILABILITY.md`, `CHANGELOG.md`, `THIRD_PARTY_NOTICES.md`,
   `RELEASE_NOTES.md`, `RELEASE_CHECKLIST.md`, and the `prompts/` and
-  `constrained_simulations_raw/` documentation written for this archive.
+  `constrained_simulations/` documentation written for this archive.
 - The author-written prompt in `prompts/` (the constrained extraction system
   prompt is also part of the MIT-licensed source; the archived copy and the
   unconstrained question-5 generation prompt are the author's own text).
@@ -35,7 +35,7 @@ Creative Commons Attribution 4.0 International License:
 
 - `unconstrained_simulations/Q05..Q23/` (the generated `index.html`,
   `styles_projectile.css`, `projectile.js`, `main_projectile.py`), and
-- `constrained_simulations_raw/` (the constrained tool's generated outputs).
+- `constrained_simulations/` (the constrained tool's generated outputs).
 
 These were produced by AI models from the study inputs. They are included so the
 research can be inspected and rerun. **No rights are claimed over these generated

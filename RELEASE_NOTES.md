@@ -1,17 +1,18 @@
-# NewtonSimAIResearch v1.0.2
+# NewtonSimAIResearch v1.0.3
 
 Archived release of the data, software, and supplementary materials for the
 pilot study **"Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI
 Problem-to-Simulation Generation."**
 
-**Change from v1.0.1:** citation-metadata consistency fix. `CITATION.cff` now
-references only the **concept DOI** (which always resolves to the latest
-version), removing a version/DOI mismatch; the README and data-availability text
-no longer hardcode a version-specific DOI. `REPRODUCIBILITY.md` now states
-explicitly that the constrained-condition audit cannot be exactly reproduced
-(the five scored runs among the 36 archived are not individually certified). No
-data or code changed. (v1.0.1 corrected the unconstrained-prompt provenance: the
-single archived prompt was used for all five questions.)
+**Change from v1.0.2:** the constrained condition is now archived as the **five
+scored generations**, one per question, in `constrained_simulations/Q05..Q23/` —
+mirroring the unconstrained condition. The previous `constrained_simulations_raw/`
+folder (which included non-study test/duplicate runs from the tool's output
+directory) and its "best-match / not certified" hedging are removed: the five
+generations are the ones the study author scored. The constrained-condition
+rubric audit is therefore reproducible on the exact scored artifacts. No scoring
+data changed. (Earlier: v1.0.2 fixed citation-metadata DOI consistency; v1.0.1
+corrected the unconstrained-prompt provenance.)
 
 ## Study scope
 
@@ -34,9 +35,8 @@ archive does **not** establish a repeated-generation hallucination/error rate.
   complete four-file artifact (`index.html`, `styles_projectile.css`,
   `projectile.js`, and its own `main_projectile.py` backend).
 - `NewtonSimAI_source/` — the constrained tool's source code.
-- `constrained_simulations_raw/` — the constrained tool's original generation
-  history (36 runs; the five scored runs are among them but not individually
-  certified).
+- `constrained_simulations/` — the five scored NewtonSimAI generations, one per
+  question, served by the shared framework backend in `NewtonSimAI_source/`.
 - `prompts/` — the constrained extraction system prompt (verbatim) and the exact
   unconstrained generation prompt (a single prompt used for all five questions).
 - `scoring_data.csv` — reported summary scores (manuscript Table III).
