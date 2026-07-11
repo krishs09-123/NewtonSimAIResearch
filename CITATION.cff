@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this archive, please cite it as below."
+title: >-
+  NewtonSimAIResearch: Data, Software, and Supplementary Materials for
+  Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI
+  Problem-to-Simulation Generation
+type: software
+authors:
+  - family-names: Sachithanand
+    given-names: Krish
+    orcid: "https://orcid.org/0009-0006-2386-0443"
+version: 1.0.0
+date-released: "2026-07-11"
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/krishs09-123/NewtonSimAIResearch"
+url: "https://github.com/krishs09-123/NewtonSimAIResearch"
+keywords:
+  - physics education
+  - artificial intelligence
+  - generative AI
+  - large language models
+  - physics simulation
+  - projectile motion
+  - free fall
+  - hallucination mitigation
+  - constrained generation
+  - NewtonSimAI
+  - reproducibility
+abstract: >-
+  Supplementary materials, data, and software for the pilot study "Constrained
+  vs. Unconstrained Free-Fall and Projectile-Motion AI Problem-to-Simulation
+  Generation." The study compares constrained NewtonSimAI simulations (GPT-4o-mini
+  extraction into a fixed framework) with unconstrained Claude Opus 4.6
+  generations across five Force Concept Inventory questions, one generation per
+  question per condition, scored against a 17-criterion technical and physical
+  accuracy rubric. The archive contains the reported summary scores, a derived
+  criterion-level scoring file (reconstructed from the reported summary and the
+  rubric, not an original contemporaneous scoring sheet), the unconstrained
+  simulation artifacts, the NewtonSimAI source code, prompts, and research
+  documentation. Original source code is MIT-licensed; original data and
+  documentation are CC BY 4.0. Force Concept Inventory materials are third-party
+  and are not redistributed.
