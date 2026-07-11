@@ -55,7 +55,7 @@ NewtonSimAI_Research/
 ├── constrained_simulations_raw/  ← the constrained tool's original generated
 │                                    outputs (36 historical runs) + provenance
 │
-├── scoring_data.csv              ← per-simulation summary scores (paper Table 2)
+├── scoring_data.csv              ← per-simulation summary scores (paper Table III)
 └── criterion_level_scoring.csv   ← full criterion-by-criterion matrix (170 rows)
 ```
 
@@ -66,7 +66,7 @@ plus the FCI question image (`No.<n>.webp`) that was used as its input.
 
 ## Scored outcomes (unconstrained condition)
 
-From the paper's results table. Every **constrained** generation scored 100%.
+From the paper's Table III (Raw Data). Every **constrained** generation scored 100%.
 
 | Question | Scenario | Score | Failed criteria |
 |----------|----------|-------|-----------------|
@@ -92,18 +92,19 @@ rubric criteria = **170 rows**). Columns:
 |--------|---------|
 | `fci_question` | FCI item number (5, 16, 17, 22, 23) |
 | `condition` | `Constrained` or `Unconstrained` |
-| `criterion` | The rubric criterion (one of the 17, verbatim from the paper's Figure 1) |
+| `criterion` | The rubric criterion (one of the 17, verbatim from the paper's Table II) |
 | `applicable` | `Yes` / `No` — whether this criterion applies to this problem's setup |
 | `result` | `Pass`, `Fail`, or `Not applicable` |
 | `evidence_or_notes` | Short note: why a criterion is N/A, or the observed reason a criterion failed |
 
-The 17 criteria and their applicability rules come from the paper's **Figure 1
-(Technical Evaluation Rubric)**. Three criteria are conditional: *modifiable
-launch angle* and *horizontal velocity constant* apply to projectile-motion
-setups only, and the *force_air_drag vector* view applies to air-resistance
-setups only — which is why the applicable-criteria total ranges from 14 to 17.
-Every Pass/Fail/N/A entry is derived from, and reconciles exactly with, the
-recorded per-criterion outcomes in `scoring_data.csv` (paper Table 2): the
+The 17 criteria and their applicability rules come from the paper's **Table II
+(Technical and Physical Accuracy Evaluation Rubric)**. Three criteria are
+conditional: *modifiable launch angle* and *horizontal velocity constant* apply
+to projectile-motion setups only, and the *force_air_drag vector* view applies
+to air-resistance setups only — which is why the applicable-criteria total
+ranges from 14 to 17. Every Pass/Fail/N/A entry is derived from, and reconciles
+exactly with, the recorded per-criterion outcomes in `scoring_data.csv` (paper
+Table III): the
 matrix reproduces the same met/applicable/failed counts for all ten
 simulations. It is an expansion of the study's recorded scoring, not a
 re-scoring.

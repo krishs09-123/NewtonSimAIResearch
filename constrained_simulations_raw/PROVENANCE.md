@@ -58,7 +58,7 @@ scored artifact, and confidence is stated per row.
 | **Q23** — bowling ball from a flying airliner (projectile) | `sim_00f5c9d1ef6b41d3` | h100 · s100 · a0 · 6.8 kg · air off | 6.8 kg = regulation bowling-ball mass, launched horizontally at high speed from height = airliner drop; the strongest single mass signal in the set | moderate |
 
 All constrained simulations scored **100%** on their applicable criteria (paper
-Table 2), so the flagged run and its near-duplicates are behaviorally
+Table III), so the flagged run and its near-duplicates are behaviorally
 equivalent for scoring purposes — the uncertainty is only about *which physical
 folder* was the scored one, not about the outcome.
 

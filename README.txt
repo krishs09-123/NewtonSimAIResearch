@@ -60,7 +60,7 @@ NewtonSimAI_Supplementary_Materials/
 +-- constrained_simulations_raw/   <- the constrained tool's original generated
 |                                     outputs (36 historical runs) + PROVENANCE.md
 |
-+-- scoring_data.csv               <- per-simulation summary scores (paper Table 2)
++-- scoring_data.csv               <- per-simulation summary scores (paper Table III)
 |
 +-- criterion_level_scoring.csv    <- full criterion-by-criterion matrix (170 rows)
 
@@ -80,7 +80,7 @@ item, together with the FCI question image that was used as the input:
                           item (to re-test / reproduce).
 
 Folder-to-question mapping and each item's scored outcome (from the paper,
-Table 2):
+Table III):
 
   Q05  = FCI Q5  (steel ball thrown straight up; free fall)      50.00%  [outlier]
          Failed: modifiable mass/height/velocity, speed options, time scrubbing,
@@ -208,20 +208,20 @@ summary into one row per simulation-criterion combination: 10 simulations
 
   fci_question       FCI item number (5, 16, 17, 22, 23).
   condition          "Constrained" or "Unconstrained".
-  criterion          The rubric criterion, verbatim from the paper's Figure 1
-                     (Technical Evaluation Rubric).
+  criterion          The rubric criterion, verbatim from the paper's Table II
+                     (Technical and Physical Accuracy Evaluation Rubric).
   applicable         "Yes" / "No" -- whether this criterion applies to the
                      problem's setup.
   result             "Pass", "Fail", or "Not applicable".
   evidence_or_notes  Why a criterion is N/A, or the observed reason it failed.
 
 The 17 criteria and their applicability rules are taken from the paper's
-Figure 1. Three criteria are conditional: "modifiable launch angle" and
+Table II. Three criteria are conditional: "modifiable launch angle" and
 "horizontal velocity constant" apply to projectile-motion setups only, and the
 "force_air_drag vector" view applies to air-resistance setups only -- which is
 why the applicable-criteria total ranges from 14 to 17. Every Pass/Fail/N/A
 entry is derived from, and reconciles exactly with, the recorded per-criterion
-outcomes in scoring_data.csv (paper Table 2); it reproduces the same
+outcomes in scoring_data.csv (paper Table III); it reproduces the same
 met/applicable/failed counts for all ten simulations. This file is an expansion
 of the study's recorded scoring, not a re-scoring.
 
