@@ -1,18 +1,23 @@
 ================================================================================
 AUTO-EXTRACTED TEXT — the PDF in this folder is authoritative
 ================================================================================
-Source file:  Prompts for question 5.pdf (provided by the study author)
+Source file:  "Prompts for question 5.pdf" (provided by the study author). Per
+              the author, despite the filename this is the SINGLE generation
+              prompt used for ALL FIVE questions.
 Condition:    Unconstrained (Claude Opus 4.6). This is the generation prompt
-              (technical build spec) used for FCI question 5.
+              (technical build spec). The unconstrained generation for each
+              question was produced by giving Claude Opus 4.6 THIS prompt plus
+              that question's FCI item as input; the prompt text is the same
+              across all five questions and the FCI question is the variable.
 Extraction:   Text auto-extracted from the PDF with pypdf. PDF-to-text
               extraction introduces whitespace/spacing artifacts (e.g. extra
               spaces between words). For the exact wording/formatting, consult
-              unconstrained_generation_prompt_question5.pdf, which is the
-              authoritative record. No wording was edited in the block below.
-Note:         This PDF contains the generation prompt only. It does not embed
-              the FCI question text or screenshot (0 embedded images); those
-              were provided separately as inputs (third-party FCI material,
-              not redistributed here).
+              unconstrained_generation_prompt.pdf, which is the authoritative
+              record. No wording was edited in the block below.
+Note:         This prompt contains the generation instructions only. It does not
+              embed any FCI question text or screenshot (0 embedded images); the
+              FCI question was provided separately as input per generation
+              (third-party FCI material, not redistributed here).
 ================================================================================
 
 You  are  **Claude  Opus**,  acting  as  an  **expert  full-stack  simulation  engineer**.  Build  a  

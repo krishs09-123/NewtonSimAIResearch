@@ -46,10 +46,10 @@ invented here.
 ## Prompts
 
 - **Available:** the constrained extraction system prompt (verbatim from
-  `NewtonSimAI_source/server.js`), and the exact unconstrained generation prompt
-  for **question 5** (`prompts/`).
-- **Not retained:** the exact unconstrained generation prompts for questions 16,
-  17, 22, and 23. See `prompts/README.md`.
+  `NewtonSimAI_source/server.js`), and the unconstrained generation prompt
+  (`prompts/`). Per the author, the single unconstrained prompt was used for
+  **all five** questions — each generation was produced from this prompt plus
+  that question's FCI item as input. See `prompts/README.md`.
 
 ## Unavailable / not-retained records
 
@@ -57,7 +57,6 @@ invented here.
   generated `projectile.js`, not saved separately).
 - A record identifying which of the 36 archived constrained runs were the five
   scored outputs (see `constrained_simulations_raw/PROVENANCE.md`).
-- The unconstrained generation prompts for questions 16, 17, 22, 23.
 
 These are stated as limitations, not reconstructed. See
 `ARTIFACT_AVAILABILITY.md` for the full inventory.

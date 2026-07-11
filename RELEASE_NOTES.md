@@ -1,8 +1,14 @@
-# NewtonSimAIResearch v1.0.0
+# NewtonSimAIResearch v1.0.1
 
-First archived release of the data, software, and supplementary materials for
-the pilot study **"Constrained vs. Unconstrained Free-Fall and Projectile-Motion
-AI Problem-to-Simulation Generation."**
+Archived release of the data, software, and supplementary materials for the
+pilot study **"Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI
+Problem-to-Simulation Generation."**
+
+**Change from v1.0.0:** corrects the unconstrained-prompt provenance. The single
+archived generation prompt was used for **all five** questions (prompt + each
+question's FCI item as input) — v1.0.0 had incorrectly described the prompts for
+questions 16, 17, 22, and 23 as "not retained." The prompt file was renamed
+accordingly. No data or code changed.
 
 ## Study scope
 
@@ -29,7 +35,7 @@ archive does **not** establish a repeated-generation hallucination/error rate.
   history (36 runs; the five scored runs are among them but not individually
   certified).
 - `prompts/` — the constrained extraction system prompt (verbatim) and the exact
-  unconstrained generation prompt for question 5.
+  unconstrained generation prompt (a single prompt used for all five questions).
 - `scoring_data.csv` — reported summary scores (manuscript Table III).
 - `data/criterion_level_scoring.csv` + `data/DATA_DICTIONARY.md` — derived
   criterion-level scoring and its documentation.
@@ -56,11 +62,11 @@ archive does **not** establish a repeated-generation hallucination/error rate.
 
 - Constrained extraction JSON configurations (config was injected into the
   generated code, not saved separately).
-- Exact unconstrained generation prompts for questions 16, 17, 22, 23.
 - A record identifying which of the 36 constrained runs were the five scored
   outputs.
 
-These are documented, not reconstructed (`ARTIFACT_AVAILABILITY.md`).
+These are documented, not reconstructed (`ARTIFACT_AVAILABILITY.md`). The
+unconstrained generation prompt **is** included (one prompt, all five questions).
 
 ## Third-party material
 
@@ -78,7 +84,10 @@ mapping, and scenario paraphrases are retained. See `THIRD_PARTY_NOTICES.md`.
 
 ## Citing this archive
 
-This release is archived on Zenodo, which mints a DOI for it. After the DOI is
-issued, cite the archive using the **version-specific DOI** shown on the Zenodo
-record (it will also be added to `README.md` and `CITATION.cff`). Until then,
-cite the GitHub release. Do not cite a DOI value that is not yet shown on Zenodo.
+This archive is on Zenodo. Cite the **concept DOI**, which always resolves to the
+latest version:
+
+> https://doi.org/10.5281/zenodo.21314578
+
+Zenodo also mints a version-specific DOI for each release (shown on that
+release's Zenodo record) for anyone who needs to pin an exact version.

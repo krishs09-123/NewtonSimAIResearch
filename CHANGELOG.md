@@ -3,6 +3,22 @@
 All notable changes to this research archive are documented here. This project
 uses semantic-version tags; the archive is deposited to Zenodo per release.
 
+## [1.0.1] — 2026-07-11
+
+Provenance correction (no data or code changes).
+
+### Corrected
+
+- **Unconstrained generation prompt applies to all five questions.** Per the
+  study author, the single archived generation prompt was used for **every**
+  unconstrained item (this prompt + each question's FCI item as input). v1.0.0
+  had incorrectly stated the prompts for questions 16, 17, 22, and 23 were "not
+  retained." Renamed `prompts/unconstrained_generation_prompt_question5.*` to
+  `prompts/unconstrained_generation_prompt.*` and updated `prompts/README.md`,
+  `ARTIFACT_AVAILABILITY.md`, `PROVENANCE.md`, and `RELEASE_NOTES.md`.
+- **Citation** now uses the Zenodo **concept DOI** (resolves to the latest
+  version) in `README.md`, `CITATION.cff`, and `docs/IOP_DATA_AVAILABILITY_TEXT.md`.
+
 ## [1.0.0] — 2026-07-11
 
 First archived release, prepared for deposit to Zenodo and assignment of a DOI.

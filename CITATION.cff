@@ -9,15 +9,15 @@ authors:
   - family-names: Sachithanand
     given-names: Krish
     orcid: "https://orcid.org/0009-0006-2386-0443"
-version: 1.0.0
-doi: 10.5281/zenodo.21314579
+version: 1.0.1
+doi: 10.5281/zenodo.21314578
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.21314579
-    description: "Version DOI (this release, v1.0.0)"
-  - type: doi
     value: 10.5281/zenodo.21314578
-    description: "Concept DOI (all versions)"
+    description: "Concept DOI (all versions; resolves to the latest)"
+  - type: doi
+    value: 10.5281/zenodo.21314579
+    description: "Version DOI for release v1.0.0"
 date-released: "2026-07-11"
 license:
   - MIT

@@ -14,12 +14,14 @@ are third-party material and are **not** redistributed here — see
 
 ## DOI / citation
 
-This repository is archived on Zenodo:
+This repository is archived on Zenodo. **Cite the concept DOI**, which always
+resolves to the latest archived version:
 
-- **Version DOI (this release, v1.0.0)** — cite this exact archived version in
-  the manuscript: [10.5281/zenodo.21314579](https://doi.org/10.5281/zenodo.21314579)
-- **Concept DOI (all versions / latest)** — the badge above:
-  [10.5281/zenodo.21314578](https://doi.org/10.5281/zenodo.21314578)
+- **Concept DOI (recommended for the manuscript):**
+  [10.5281/zenodo.21314578](https://doi.org/10.5281/zenodo.21314578) — the badge
+  above.
+- Each release also has a **version-specific DOI** on its own Zenodo record, for
+  pinning an exact version (e.g. v1.0.0 = `10.5281/zenodo.21314579`).
 
 See `CITATION.cff` for citation metadata.
 
