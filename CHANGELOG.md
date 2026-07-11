@@ -3,6 +3,18 @@
 All notable changes to this research archive are documented here. This project
 uses semantic-version tags; the archive is deposited to Zenodo per release.
 
+## [1.0.4] — 2026-07-11
+
+Documentation wording fix (no data or code changes).
+
+### Corrected
+
+- **`README.txt`** no longer says the archive lets readers inspect "the FCI
+  problem inputs" (which are third-party and not redistributed). It now says
+  "descriptions and mappings of the FCI problem inputs," removing an internal
+  contradiction with the third-party notice. (`README.md` already stated this
+  correctly.)
+
 ## [1.0.3] — 2026-07-11
 
 Constrained-condition artifacts corrected.

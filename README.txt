@@ -6,7 +6,8 @@ Supplementary Materials
 This archive accompanies the pilot study "Constrained vs. Unconstrained Free-Fall
 and Projectile-Motion AI Problem-to-Simulation Generation." It lets a reviewer
 inspect the unconstrained simulation artifacts, the constrained tool's source
-code, the FCI problem inputs, and the scored results reported in the paper.
+code, descriptions and mappings of the FCI problem inputs, and the scored
+results reported in the paper.
 
 
 --------------------------------------------------------------------------------
@@ -37,8 +38,9 @@ Q22 (projectile), Q23 (projectile). One generation was produced per question per
 condition.
 
 This archive contains the UNCONSTRAINED simulation artifacts (the more variable,
-more interesting condition), the constrained tool's source, the FCI inputs, and
-the full scoring data.
+more interesting condition), the constrained tool's source, descriptions and
+mappings of the FCI inputs (the FCI inputs themselves are third-party and not
+redistributed), and the full scoring data.
 
 
 --------------------------------------------------------------------------------

@@ -1,18 +1,16 @@
-# NewtonSimAIResearch v1.0.3
+# NewtonSimAIResearch v1.0.4
 
 Archived release of the data, software, and supplementary materials for the
 pilot study **"Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI
 Problem-to-Simulation Generation."**
 
-**Change from v1.0.2:** the constrained condition is now archived as the **five
-scored generations**, one per question, in `constrained_simulations/Q05..Q23/` —
-mirroring the unconstrained condition. The previous `constrained_simulations_raw/`
-folder (which included non-study test/duplicate runs from the tool's output
-directory) and its "best-match / not certified" hedging are removed: the five
-generations are the ones the study author scored. The constrained-condition
-rubric audit is therefore reproducible on the exact scored artifacts. No scoring
-data changed. (Earlier: v1.0.2 fixed citation-metadata DOI consistency; v1.0.1
-corrected the unconstrained-prompt provenance.)
+**Change from v1.0.3:** documentation wording fix — `README.txt` now says the
+archive lets readers inspect "descriptions and mappings of the FCI problem
+inputs" rather than "the FCI problem inputs," removing an internal contradiction
+(the FCI inputs are third-party and not redistributed). No data or code changed.
+(Earlier: v1.0.3 archived the constrained condition as the five scored
+generations; v1.0.2 fixed citation-metadata DOI consistency; v1.0.1 corrected
+the unconstrained-prompt provenance.)
 
 ## Study scope
 
