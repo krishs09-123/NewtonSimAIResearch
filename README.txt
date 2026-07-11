@@ -16,7 +16,8 @@ code, the FCI problem inputs, and the scored results reported in the paper.
 The study evaluates two AI "problem-to-simulation" pipelines that turn a Force
 Concept Inventory (FCI) physics question into an interactive free-fall /
 projectile-motion simulation, and audits each against a 17-criterion technical
-rubric (feature availability + apparent physics-consistency).
+and physical-accuracy rubric (feature availability + apparent
+physics-consistency).
 
   * CONSTRAINED condition  = NewtonSimAI. A fixed, hard-coded free-fall /
     projectile framework. GPT-4o-mini extracts the problem details from the FCI

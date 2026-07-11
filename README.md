@@ -15,8 +15,8 @@ Force Concept Inventory (FCI) problem inputs, and the scored results.
 The study compares two AI "problem-to-simulation" pipelines. Each turns a Force
 Concept Inventory (FCI) physics question into an interactive free-fall /
 projectile-motion simulation, and each simulation is audited against a
-**17-criterion technical rubric** (feature availability + apparent
-physics-consistency).
+**17-criterion technical and physical-accuracy rubric** (feature availability +
+apparent physics-consistency).
 
 | Condition | What it is | How a simulation is produced | Result |
 |-----------|-----------|------------------------------|--------|

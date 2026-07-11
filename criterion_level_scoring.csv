@@ -2,11 +2,11 @@ fci_question,condition,criterion,applicable,result,evidence_or_notes
 5,Constrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 5,Unconstrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Pass,Met
 5,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,Modifiable mass,Yes,Fail,"Not met - control absent/non-functional (parameter-control failure, paper Table III Q5)"
+5,Unconstrained,Modifiable mass,Yes,Fail,"Not met - modifiable mass control absent/non-functional (Modifiable Parameters failure; paper Table III Q5, Table IV)"
 5,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,Modifiable initial height,Yes,Fail,"Not met - control absent/non-functional (parameter-control failure, paper Table III Q5)"
+5,Unconstrained,Modifiable initial height,Yes,Fail,"Not met - modifiable initial height control absent/non-functional (Modifiable Parameters failure; paper Table III Q5, Table IV)"
 5,Constrained,Modifiable initial velocity,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,Modifiable initial velocity,Yes,Fail,"Not met - control absent/non-functional (parameter-control failure, paper Table III Q5)"
+5,Unconstrained,Modifiable initial velocity,Yes,Fail,"Not met - modifiable initial velocity control absent/non-functional (Modifiable Parameters failure; paper Table III Q5, Table IV)"
 5,Constrained,Modifiable launch angle (projectile-motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
 5,Unconstrained,Modifiable launch angle (projectile-motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
 5,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
@@ -20,19 +20,19 @@ fci_question,condition,criterion,applicable,result,evidence_or_notes
 5,Constrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 5,Unconstrained,Enable/disable view of motion tracking (& components),Yes,Pass,Met
 5,Constrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Fail,"Not met - playback speed options absent (scaffolding failure, paper Table III Q5)"
+5,Unconstrained,"Speed options (0.25x, 0.5x, 0.75x, 1x, 1.25x, 1.5x, 1.75x, 2x)",Yes,Fail,"Not met - playback speed options absent (Time Controls failure; paper Table III Q5, Table IV)"
 5,Constrained,Time scrubbing,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,Time scrubbing,Yes,Fail,"Not met - time scrubbing absent (scaffolding failure, paper Table III Q5)"
+5,Unconstrained,Time scrubbing,Yes,Fail,"Not met - time scrubbing absent (Time Controls failure; paper Table III Q5, Table IV)"
 5,Constrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 5,Unconstrained,"View of key frames in time (start, apex, and end)",Yes,Pass,Met
 5,Constrained,Four or more key motion graphs,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,Four or more key motion graphs,Yes,Fail,Not met - fewer than four motion graphs displayed (paper Table III Q5)
+5,Unconstrained,Four or more key motion graphs,Yes,Fail,"Not met - fewer than four motion graphs displayed (Motion Graphs failure; paper Table III Q5, Table IV)"
 5,Constrained,"Net acceleration is always ""-g""",Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 5,Unconstrained,"Net acceleration is always ""-g""",Yes,Pass,Met
 5,Constrained,Horizontal velocity constant (projectile-motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
 5,Unconstrained,Horizontal velocity constant (projectile-motion only),No,Not applicable,Not applicable - criterion applies to projectile-motion setups only; this is a free-fall problem
 5,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-5,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Fail,Not met - graphs not qualitatively consistent with intended setup (paper Table III Q5)
+5,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Fail,Not met - graphs not qualitatively consistent with the intended setup (paper Table III Q5)
 16,Constrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 16,Unconstrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Pass,Met
 16,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
@@ -46,7 +46,7 @@ fci_question,condition,criterion,applicable,result,evidence_or_notes
 16,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 16,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met
 16,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-16,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Fail,"Not met - air-drag force vector not viewable (representation failure, paper Table III Q16)"
+16,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Fail,"Not met - air-drag force vector not viewable (Force Vector Representation failure; paper Table III Q16, Table IV)"
 16,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 16,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
 16,Constrained,Enable/disable the view of the acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
@@ -68,7 +68,7 @@ fci_question,condition,criterion,applicable,result,evidence_or_notes
 16,Constrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 16,Unconstrained,Graphs consistent with expected qualitative physics relationships for the intended setup,Yes,Pass,Met
 17,Constrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-17,Unconstrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Fail,"Not met - rendered as projectile motion instead of free fall (scenario-translation failure, paper Table III Q17)"
+17,Unconstrained,Correct Setup (Projectile-Motion or Free-Fall),Yes,Fail,"Not met - wrong setup selected; free-fall rendered under the projectile-motion setup (Setup Identification failure; paper Table III Q17, Table IV)"
 17,Constrained,Modifiable mass,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 17,Unconstrained,Modifiable mass,Yes,Pass,Met
 17,Constrained,Modifiable initial height,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
@@ -146,9 +146,9 @@ fci_question,condition,criterion,applicable,result,evidence_or_notes
 23,Constrained,Modifiable launch angle (projectile-motion only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 23,Unconstrained,Modifiable launch angle (projectile-motion only),Yes,Pass,Met
 23,Constrained,Enable/disable view of force_gravity vector (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-23,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Fail,"Not met - gravity force vector not viewable (representation failure, paper Table III Q23)"
+23,Unconstrained,Enable/disable view of force_gravity vector (& components),Yes,Fail,"Not met - gravity force vector not viewable (Force Vector Representation failure; paper Table III Q23, Table IV)"
 23,Constrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
-23,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Fail,"Not met - air-drag force vector not viewable (representation failure, paper Table III Q23)"
+23,Unconstrained,Enable/disable view of force_air_drag vector (& components) (air resistance only),Yes,Fail,"Not met - air-drag force vector not viewable (Force Vector Representation failure; paper Table III Q23, Table IV)"
 23,Constrained,Enable/disable view of velocity (& components),Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
 23,Unconstrained,Enable/disable view of velocity (& components),Yes,Pass,Met
 23,Constrained,Enable/disable the view of the acceleration vector,Yes,Pass,Met (constrained tool NewtonSimAI scored 100% of applicable criteria; paper Table III)
