@@ -79,6 +79,14 @@ python scripts/validate_research_data.py          # exits nonzero on any disagre
 
 ## Limitations (please read)
 
+- **The constrained-condition audit cannot be exactly reproduced as originally
+  performed.** `constrained_simulations_raw/` holds 36 historical runs that mix
+  the five scored generations with test and duplicate runs, and no run-level
+  scoring log was kept, so the exact five folders used for the manuscript cannot
+  be certified. The repository flags five best matches, but explicitly labels
+  them as informed guesses, not certified scored artifacts. A reader can inspect
+  and re-run the constrained tool, but cannot re-perform the original
+  constrained-condition audit on the exact same artifacts.
 - **The constrained condition requires an OpenAI API key** for its extraction
   step; that step incurs cost.
 - **API-mediated outputs may vary.** A provider can change model behavior behind

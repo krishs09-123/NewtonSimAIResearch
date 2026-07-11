@@ -3,6 +3,28 @@
 All notable changes to this research archive are documented here. This project
 uses semantic-version tags; the archive is deposited to Zenodo per release.
 
+## [1.0.2] — 2026-07-11
+
+Citation-metadata consistency fix (no data or code changes).
+
+### Corrected
+
+- **Removed the version/DOI mismatch in `CITATION.cff`.** It previously listed a
+  version-specific DOI described as v1.0.0's while declaring `version: 1.0.1`.
+  `CITATION.cff` now references only the **concept DOI**
+  (`10.5281/zenodo.21314578`, which always resolves to the latest version), so
+  the metadata is self-consistent for this and every future release. The
+  `README.md` DOI section and `docs/IOP_DATA_AVAILABILITY_TEXT.md` no longer
+  hardcode a version-specific DOI (each release's version DOI is on its Zenodo
+  record).
+
+### Clarified
+
+- **`REPRODUCIBILITY.md`** now states explicitly that the constrained-condition
+  audit cannot be exactly reproduced as originally performed: the five scored
+  runs among the 36 archived are not individually certified (no run-level
+  scoring log exists).
+
 ## [1.0.1] — 2026-07-11
 
 Provenance correction (no data or code changes).

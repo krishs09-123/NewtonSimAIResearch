@@ -20,8 +20,8 @@ resolves to the latest archived version:
 - **Concept DOI (recommended for the manuscript):**
   [10.5281/zenodo.21314578](https://doi.org/10.5281/zenodo.21314578) — the badge
   above.
-- Each release also has a **version-specific DOI** on its own Zenodo record, for
-  pinning an exact version (e.g. v1.0.0 = `10.5281/zenodo.21314579`).
+- Each release also has its own **version-specific DOI**, shown on that release's
+  Zenodo record, if you need to pin an exact version.
 
 See `CITATION.cff` for citation metadata.
 

@@ -10,8 +10,8 @@ following DOI: https://doi.org/10.5281/zenodo.21314578."
 - The DOI above is the **concept DOI** — it always resolves to the latest
   archived version, so it stays correct across corrections/updates. This is the
   recommended DOI to cite.
-- Each release also has a **version-specific DOI** on its own Zenodo record if an
-  exact version must be pinned (e.g. v1.0.0 = `https://doi.org/10.5281/zenodo.21314579`).
+- Each release also has its own **version-specific DOI**, shown on that release's
+  Zenodo record, if an exact version must be pinned.
 
 ## Suggested reference-list entry
 

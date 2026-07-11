@@ -1,14 +1,17 @@
-# NewtonSimAIResearch v1.0.1
+# NewtonSimAIResearch v1.0.2
 
 Archived release of the data, software, and supplementary materials for the
 pilot study **"Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI
 Problem-to-Simulation Generation."**
 
-**Change from v1.0.0:** corrects the unconstrained-prompt provenance. The single
-archived generation prompt was used for **all five** questions (prompt + each
-question's FCI item as input) — v1.0.0 had incorrectly described the prompts for
-questions 16, 17, 22, and 23 as "not retained." The prompt file was renamed
-accordingly. No data or code changed.
+**Change from v1.0.1:** citation-metadata consistency fix. `CITATION.cff` now
+references only the **concept DOI** (which always resolves to the latest
+version), removing a version/DOI mismatch; the README and data-availability text
+no longer hardcode a version-specific DOI. `REPRODUCIBILITY.md` now states
+explicitly that the constrained-condition audit cannot be exactly reproduced
+(the five scored runs among the 36 archived are not individually certified). No
+data or code changed. (v1.0.1 corrected the unconstrained-prompt provenance: the
+single archived prompt was used for all five questions.)
 
 ## Study scope
 
