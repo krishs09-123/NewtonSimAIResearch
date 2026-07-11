@@ -1,0 +1,28 @@
+{
+  "title": "NewtonSimAIResearch: Data, Software, and Supplementary Materials for Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI Problem-to-Simulation Generation",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng",
+  "license": "cc-by-4.0",
+  "version": "1.0.0",
+  "creators": [
+    {
+      "name": "Sachithanand, Krish",
+      "orcid": "0009-0006-2386-0443"
+    }
+  ],
+  "keywords": [
+    "physics education",
+    "artificial intelligence",
+    "generative AI",
+    "large language models",
+    "physics simulation",
+    "projectile motion",
+    "free fall",
+    "hallucination mitigation",
+    "constrained generation",
+    "NewtonSimAI",
+    "reproducibility"
+  ],
+  "description": "<p>This repository supports the pilot study &quot;Constrained vs. Unconstrained Free-Fall and Projectile-Motion AI Problem-to-Simulation Generation.&quot; It compares <strong>constrained</strong> NewtonSimAI simulations (GPT-4o-mini extracts structured question details into a fixed simulation framework) with <strong>unconstrained</strong> Claude Opus 4.6 generations (the model handles both question interpretation and simulation-code generation). Five Force Concept Inventory questions were evaluated, one generation per question per condition, scored against a 17-criterion technical and physical accuracy rubric.</p><p>Contents: the reported summary scores (<code>scoring_data.csv</code>); a derived criterion-level scoring file (<code>data/criterion_level_scoring.csv</code>); the unconstrained simulation artifacts; the NewtonSimAI source code; prompts; and research documentation.</p><p><strong>Note:</strong> the criterion-level CSV is reconstructed deterministically from the reported summary scores and the published rubric &mdash; it is not an original contemporaneous scoring sheet. <strong>Licensing:</strong> original source code is MIT; original data and documentation are CC BY 4.0 (see <code>LICENSE_SCOPE.md</code>). The single license field on this record is a simplification of that file-level split. <strong>Third-party material:</strong> Force Concept Inventory questions/images are third-party and are not redistributed here (see <code>THIRD_PARTY_NOTICES.md</code>)."
+}
